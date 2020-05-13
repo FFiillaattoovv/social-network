@@ -14,6 +14,9 @@ function App() {
                 <div>Music</div>
                 <div>Settings</div>
             </nav>
+            <div>
+                Main content
+            </div>
         </div>
     );
 }
