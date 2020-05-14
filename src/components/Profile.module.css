@@ -1,0 +1,17 @@
+.content {
+    grid-area: content;
+    background-color: blueviolet;
+    padding: 10px;
+    height: 500px;
+}
+
+.content img {
+    height: 250px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.item {
+    color: lavenderblush;
+}
