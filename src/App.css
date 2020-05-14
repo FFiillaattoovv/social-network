@@ -4,23 +4,37 @@
     grid-template-rows: 60px 1fr;
     grid-template-columns: 2fr 10fr;
     gap: 10px;
+    width: 1200px;
+    margin: 0 auto;
 }
 
 .header {
     grid-area: header;
-    background-color: mediumaquamarine;
+    background-color: lightseagreen;
+    padding: 10px;
 }
 
 .header img {
-    width: 30px;
+    width: 40px;
+    border-radius: 50%;
 }
 
 .nav {
     grid-area: nav;
-    background-color: blanchedalmond;
+    background-color: lightseagreen;
+    padding: 10px;
 }
 
 .content {
     grid-area: content;
-background-color: blueviolet;
+    background-color: blueviolet;
+    padding: 10px;
+    height: 500px;
+}
+
+.content img {
+    height: 250px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
 }
