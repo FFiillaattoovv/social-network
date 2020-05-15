@@ -14,8 +14,8 @@ function App() {
                 <Navbar/>
 
                 <div className="app-wrapper-content">
-                    <Route component={Profile}/>
-                    <Route component={Dialogs}/>
+                    <Route path="/profile" component={Profile}/>
+                    <Route path="/dialogs" component={Dialogs}/>
                 </div>
             </div>
         </BrowserRouter>
