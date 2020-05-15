@@ -7,3 +7,7 @@
     height: 50px;
     border-radius: 30px;
 }
+
+.item span {
+    margin-right: 10px;
+}
