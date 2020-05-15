@@ -13,10 +13,8 @@ function App() {
             <Navbar/>
 
             <div className="app-wrapper-content">
-                {/*<Dialogs />*/}
-                <Profile />
-                <Route />
-                <Route />
+                <Route component={Profile}/>
+                <Route component={Dialogs}/>
             </div>
         </div>
     );
