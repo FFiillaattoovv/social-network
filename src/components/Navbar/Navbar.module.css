@@ -10,8 +10,3 @@
     margin-top: 5px;
     margin-bottom: 5px;
 }
-
-.item.active a {
-    text-decoration: underline;
-    text-decoration-color: blueviolet;
-}
