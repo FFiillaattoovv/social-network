@@ -6,12 +6,5 @@
 }
 
 .content img {
-    height: 250px;
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-}
-
-.item {
-    color: lavenderblush;
+    height: 150px;
 }
