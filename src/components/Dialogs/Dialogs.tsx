@@ -2,12 +2,12 @@ import React from "react";
 import classes from "./Dialogs.module.css"
 import { NavLink } from "react-router-dom";
 
-type TypeProps = {
+type PropsType = {
     name: string
     id: number
 }
 
-const DialogItem = (props: TypeProps) => {
+const DialogItem = (props: PropsType) => {
     let path = "/dialogs/" + props.id;
     return (
         <div className={classes.dialog + " " + classes.active}>
