@@ -11,7 +11,6 @@ const Dialogs = () => {
                 </div>
                 <div className={classes.dialog}>
                     <NavLink to="/dialogs/2">Maria</NavLink>
-
                 </div>
                 <div className={classes.dialog}>
                     <NavLink to="/dialogs/3">Maxim</NavLink>
