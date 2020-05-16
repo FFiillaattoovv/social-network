@@ -15,6 +15,17 @@ const DialogItem = (props: PropsType) => {
         </div>
     )
 }
+
+type PropsTypeMessage = {
+    message: string
+}
+
+const Message = (props: PropsTypeMessage) => {
+    return (
+        <div className={classes.message}>{props.message}</div>
+    )
+}
+
 const Dialogs = () => {
     return (
         <div className={classes.dialogs}>
@@ -26,9 +37,9 @@ const Dialogs = () => {
                 <DialogItem name={"Elena"} id={5}/>
             </div>
             <div className={classes.messages}>
-                <div className={classes.message}>Hi!</div>
-                <div className={classes.message}>How are you?</div>
-                <div className={classes.message}>I'm fine!</div>
+                <Message message="Hi!"/>
+                <Message message="How are you?"/>
+                <Message message="I'm fine!"/>
             </div>
         </div>
     )
