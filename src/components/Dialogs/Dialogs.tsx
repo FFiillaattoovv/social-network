@@ -20,18 +20,10 @@ const Dialogs = () => {
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
                 <DialogItem name={"Andrey"} id={1}/>
-                <div className={classes.dialog}>
-                    <NavLink to="/dialogs/2">Maria</NavLink>
-                </div>
-                <div className={classes.dialog}>
-                    <NavLink to="/dialogs/3">Maxim</NavLink>
-                </div>
-                <div className={classes.dialog}>
-                    <NavLink to="/dialogs/4">Paul</NavLink>
-                </div>
-                <div className={classes.dialog}>
-                    <NavLink to="/dialogs/5">Elena</NavLink>
-                </div>
+                <DialogItem name={"Maria"} id={2}/>
+                <DialogItem name={"Maxim"} id={3}/>
+                <DialogItem name={"Paul"} id={4}/>
+                <DialogItem name={"Elena"} id={5}/>
             </div>
             <div className={classes.messages}>
                 <div className={classes.message}>Hi!</div>
