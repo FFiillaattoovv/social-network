@@ -36,11 +36,14 @@ const Dialogs = () => {
         {id: 5, name: "Elena"}
     ];
 
+    let dialogsElements = dialogsData.map( dialog => <DialogItem name={dialog.name} id={dialog.id}/>);
+
     let messagesData = [
         {id: 1, message: "Hi!"},
         {id: 2, message: "How are you"},
         {id: 3, message: "I'm fine!"}
     ];
+
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
