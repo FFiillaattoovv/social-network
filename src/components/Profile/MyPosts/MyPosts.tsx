@@ -9,6 +9,8 @@ const MyPosts = () => {
         {id: 2, message: "It's my first post.", likesCount: 16}
     ];
 
+    let postsElements = postData.map( post => <Post message={post.message} likesCount={post.likesCount} />)
+
     return (
         <div>
             <div>
@@ -16,8 +18,7 @@ const MyPosts = () => {
                 <textarea></textarea>
             </div>
             <div>New post</div>
-            <Post message={postData[0].message} likesCount={postData[0].likesCount} />
-            <Post message={postData[1].message} likesCount={postData[1].likesCount} />
+            {postsElements}
         </div>
     )
 }
