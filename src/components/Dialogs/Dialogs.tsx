@@ -44,6 +44,8 @@ const Dialogs = () => {
         {id: 3, message: "I'm fine!"}
     ];
 
+    let messagesElements = messagesData.map( message => <Message message={message.message}/>)
+
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
