@@ -2,11 +2,11 @@ import React from "react";
 import classes from "./Profile.module.css"
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {postDataType} from "../../index";
+import {postsDataType} from "../../index";
 
 
 type profileType = {
-    posts: Array<postDataType>
+    posts: Array<postsDataType>
 }
 
 const Profile = (props: profileType) => {

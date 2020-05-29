@@ -7,13 +7,13 @@ import {BrowserRouter, Route} from 'react-router-dom';
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from './components/Settings/Settings';
-import {MessageType, DialogItemType, postDataType} from "./index";
+import {messagesDataType, dialogsDataType, postsDataType} from "./index";
 import Profile from "./components/Profile/Profile";
 
 type PropsType = {
-    messages: Array<MessageType>
-    dialogs: Array<DialogItemType>
-    posts: Array<postDataType>
+    messages: Array<messagesDataType>
+    dialogs: Array<dialogsDataType>
+    posts: Array<postsDataType>
 }
 
 function App(props: PropsType) {

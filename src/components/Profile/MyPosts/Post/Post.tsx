@@ -1,9 +1,9 @@
 import React from "react";
 import classes from "./Post.module.css"
-import {postDataType} from "../../../../index";
+import {postsDataType} from "../../../../index";
 
 
-const Post = (props:postDataType) => {
+const Post = (props:postsDataType) => {
     return (
         <div className={classes.item}>
             <img src="https://th.bing.com/th/id/OIP.zdpQB2oj-lMHpr6h7o8s6QHaHa?w=227&h=211&c=7&o=5&dpr=1.4&pid=1.7" alt=""/>

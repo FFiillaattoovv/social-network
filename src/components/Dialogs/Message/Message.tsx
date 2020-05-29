@@ -1,8 +1,8 @@
 import classes from "../Dialogs.module.css";
 import React from "react";
-import {MessageType} from "../../../index";
+import {messagesDataType} from "../../../index";
 
-const Message = (props: MessageType) => {
+const Message = (props: messagesDataType) => {
     return (
         <div className={classes.message}>{props.message}</div>
     )
