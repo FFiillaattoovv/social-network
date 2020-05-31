@@ -1,4 +1,3 @@
-// @ts-ignore
 let state = {
     profilePage: {
         posts: [
@@ -24,3 +23,5 @@ let state = {
 
     }
 }
+
+export default state;
