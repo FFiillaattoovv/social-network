@@ -26,7 +26,10 @@ type DialogsPageType = {
 type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
+    sidebar: sidebarType
 }
+
+type sidebarType = {}
 
 let state: RootStateType = {
     profilePage: {
@@ -49,6 +52,7 @@ let state: RootStateType = {
             {id: 3, message: "I'm fine!"}
         ]
     },
+    sidebar: {}
 }
 
 export default state;
