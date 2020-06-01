@@ -3,38 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
-import state from "./redux/state";
-
-export type dialogsDataType = {
-    name: string
-    id: number
-}
-
-export type messagesDataType = {
-    message: string
-    id?: number
-}
-
-export type postsDataType = {
-    id?: number
-    message: string
-    likesCount: number
-}
-
-let dialogsData:Array<dialogsDataType> = [
-
-];
-
-let messagesData: Array<messagesDataType> = [
-
-];
-
-let postsData: Array<postsDataType> = [
-];
 
 ReactDOM.render(
   <React.StrictMode>
-    <App messages={messagesData} dialogs={dialogsData} posts={postsData}/>
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -1,15 +1,15 @@
-type MessageType = {
-    id: number
+export type MessageType = {
+    id?: number
     message: string
 }
 
-type DialogType = {
+export type DialogType = {
     id: number
     name: string
 }
 
-type PostType = {
-    id: number
+export type PostType = {
+    id?: number
     message: string
     likesCount: number
 }
@@ -23,12 +23,9 @@ type DialogsPageType = {
     messages: Array<MessageType>
 }
 
-type SidebarType = {}
-
 type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
-    sidebar: SidebarType
 }
 
 let state: RootStateType = {
@@ -52,7 +49,6 @@ let state: RootStateType = {
             {id: 3, message: "I'm fine!"}
         ]
     },
-    sidebar: {}
 }
 
 export default state;
