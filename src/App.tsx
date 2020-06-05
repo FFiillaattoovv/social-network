@@ -15,19 +15,17 @@ function App() {
     let dialogs = state.dialogsPage.dialogs;
     let messages = state.dialogsPage.messages;
     return (
-        <BrowserRouter>
-            <div className="app-wrapper">
-                <Header/>
-                <Navbar/>
-                <div className="app-wrapper-content">
-                    <Route path="/profile" render={() => <Profile posts={posts}/>}/>
-                    <Route path="/dialogs" render={() => <Dialogs dialogs={dialogs} messages={messages}/>}/>
-                    <Route path="/news" render={() => <News/>}/>
-                    <Route path="/music" render={() => <Music/>}/>
-                    <Route path="/settings" render={() => <Settings/>}/>
-                </div>
+        <div className="app-wrapper">
+            <Header/>
+            <Navbar/>
+            <div className="app-wrapper-content">
+                <Route path="/profile" render={() => <Profile posts={posts}/>}/>
+                <Route path="/dialogs" render={() => <Dialogs dialogs={dialogs} messages={messages}/>}/>
+                <Route path="/news" render={() => <News/>}/>
+                <Route path="/music" render={() => <Music/>}/>
+                <Route path="/settings" render={() => <Settings/>}/>
             </div>
-        </BrowserRouter>
+        </div>
     );
 }
 
