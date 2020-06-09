@@ -8,18 +8,20 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from './components/Settings/Settings';
 import Profile from "./components/Profile/Profile";
-import state from "./redux/state";
+import state, { addPost } from "./redux/state";
+
 
 function App() {
     let posts = state.profilePage.posts;
     let dialogs = state.dialogsPage.dialogs;
     let messages = state.dialogsPage.messages;
+
     return (
         <div className="app-wrapper">
             <Header/>
             <Navbar/>
             <div className="app-wrapper-content">
-                <Route path="/profile" render={() => <Profile posts={posts}/>}/>
+                <Route path="/profile" render={() => <Profile posts={posts} addPost={addPost}/>}/>
                 <Route path="/dialogs" render={() => <Dialogs dialogs={dialogs} messages={messages}/>}/>
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Music/>}/>
