@@ -5,6 +5,7 @@ import {addPostType, PostType} from "../../../redux/state";
 type PropsType = {
     posts: Array<PostType>
     addPost: addPostType
+    newPostText: string
 
 }
 const MyPosts = (props: PropsType) => {
@@ -20,7 +21,7 @@ const MyPosts = (props: PropsType) => {
         <div>
             <div>
                 <h3>My posts</h3>
-                <textarea ref={newPostElement}></textarea>
+                <textarea ref={newPostElement} value={props.newPostText} />
             </div>
             <div>
                 <button onClick={addPost}>Add post</button>
