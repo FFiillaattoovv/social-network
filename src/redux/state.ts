@@ -68,4 +68,9 @@ export let addPost = (postMessage: string) => {
     renderEntireTree();
 }
 
+export let updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText;
+    renderEntireTree();
+}
+
 export default state;
