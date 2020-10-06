@@ -6,8 +6,8 @@ type PropsType = {
     posts: Array<PostType>
     addPost: addPostType
     newPostText: string
-
 }
+
 const MyPosts = (props: PropsType) => {
     let postsElements = props.posts.map(post => <Post message={post.message} likesCount={post.likesCount}/>)
     let newPostElement = React.createRef<HTMLTextAreaElement>();
@@ -21,7 +21,7 @@ const MyPosts = (props: PropsType) => {
         <div>
             <div>
                 <h3>My posts</h3>
-                <textarea ref={newPostElement} value={props.newPostText} />
+                <textarea ref={newPostElement} value={props.newPostText}/>
             </div>
             <div>
                 <button onClick={addPost}>Add post</button>
