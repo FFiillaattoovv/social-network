@@ -59,14 +59,17 @@ let state: RootStateType = {
     sidebar: {}
 }
 
-export type  addPostType = (postMessage: string) => void
+export type  addPostType = () => void
 
 
-export let addPost = (postMessage: string) => {
-    let newPost:PostType = {id: 3, message: postMessage, likesCount: 0};
+export let addPost = () => {
+    let newPost:PostType = {id: 3, message: state.profilePage.newPostText, likesCount: 0};
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = "";
     renderEntireTree();
 }
+
+export type  updateNewPostTextType = (newText: string) => void
 
 export let updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText;
