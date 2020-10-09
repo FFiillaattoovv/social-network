@@ -35,7 +35,7 @@ type sidebarType = {}
 export type storeType = {
     _state: RootStateType
     getState: () => RootStateType
-    renderEntireTree: () => void
+    _callSubscriber: () => void
     addPost: () => void
     updateNewPostText: (newText: string) => void
     subscribe: (observer: () => void) => void
@@ -69,21 +69,21 @@ let store: storeType = {
     getState() {
         return this._state;
     },
-    renderEntireTree() {
+    _callSubscriber() {
 
     },
     addPost() {
         let newPost: PostType = {id: 3, message: this._state.profilePage.newPostText, likesCount: 0};
         this._state.profilePage.posts.push(newPost);
         this._state.profilePage.newPostText = "";
-        this.renderEntireTree();
+        this._callSubscriber();
     },
     updateNewPostText(newText: string) {
         this._state.profilePage.newPostText = newText;
-        this.renderEntireTree();
+        this._callSubscriber();
     },
     subscribe(observer) {
-        this.renderEntireTree = observer;
+        this._callSubscriber = observer;
     }
 }
 

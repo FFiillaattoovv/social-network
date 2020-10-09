@@ -1,6 +1,6 @@
 import React from "react";
 import Post from "./Post/Post";
-import {addPostType, PostType, updateNewPostTextType, storeType} from "../../../redux/state";
+import {addPostType, PostType, updateNewPostTextType} from "../../../redux/state";
 
 type PropsType = {
     posts: Array<PostType>
