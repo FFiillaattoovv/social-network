@@ -8,14 +8,17 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from './components/Settings/Settings';
 import Profile from "./components/Profile/Profile";
-import state, {addPost, updateNewPostText} from "./redux/state";
+import {storeType} from "./redux/state";
 
+type PropsType = {
+    store: storeType
+}
 
-function App() {
-    let posts = state.profilePage.posts;
-    let dialogs = state.dialogsPage.dialogs;
-    let messages = state.dialogsPage.messages;
-    let newPostText = state.profilePage.newPostText;
+function App(props: PropsType) {
+    let posts = props.store._state.profilePage.posts;
+    let dialogs = props.store._state.dialogsPage.dialogs;
+    let messages = props.store._state.dialogsPage.messages;
+    let newPostText = props.store._state.profilePage.newPostText;
 
     return (
         <div className="app-wrapper">
@@ -24,9 +27,9 @@ function App() {
             <div className="app-wrapper-content">
                 <Route path="/profile" render={() => <Profile
                     posts={posts}
-                    addPost={addPost}
+                    addPost={props.store.addPost.bind(props.store)}
                     newPostText={newPostText}
-                    updateNewPostText={updateNewPostText}
+                    updateNewPostText={props.store.updateNewPostText.bind(props.store)}
                 />}/>
                 <Route path="/dialogs" render={() => <Dialogs dialogs={dialogs} messages={messages}/>}/>
                 <Route path="/news" render={() => <News/>}/>
