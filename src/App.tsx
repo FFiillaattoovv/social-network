@@ -27,9 +27,8 @@ function App(props: PropsType) {
             <div className="app-wrapper-content">
                 <Route path="/profile" render={() => <Profile
                     posts={posts}
-                    addPost={props.store.addPost.bind(props.store)}
                     newPostText={newPostText}
-                    updateNewPostText={props.store.updateNewPostText.bind(props.store)}
+                    dispatch={props.store.dispatch.bind(props.store)}
                 />}/>
                 <Route path="/dialogs" render={() => <Dialogs dialogs={dialogs} messages={messages}/>}/>
                 <Route path="/news" render={() => <News/>}/>
