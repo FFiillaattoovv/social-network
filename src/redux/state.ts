@@ -44,20 +44,20 @@ export type storeType = {
 export type ActionsTypes =
     ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof updateNewPostTextActionCreator>
-    | ReturnType<typeof updateNewMessageBodyActionCreator>
-    | ReturnType<typeof sendMessageActionCreator>
+    | ReturnType<typeof updateNewMessageBodyCreator>
+    | ReturnType<typeof sendMessageCreator>
 
 
 export const addPostActionCreator = () => ({type: "ADD-POST"} as const)
 
 export const updateNewPostTextActionCreator = (text: string) => ({type: "UPDATE-NEW-POST-TEXT", newText: text} as const)
 
-export const updateNewMessageBodyActionCreator = (text: string) => ({
+export const updateNewMessageBodyCreator = (text: string) => ({
     type: "UPDATE-NEW-MESSAGE-BODY",
     body: text
 } as const)
 
-export const sendMessageActionCreator = () => ({type: "SEND-MESSAGE"} as const)
+export const sendMessageCreator = () => ({type: "SEND-MESSAGE"} as const)
 
 let store: storeType = {
     _state: {
