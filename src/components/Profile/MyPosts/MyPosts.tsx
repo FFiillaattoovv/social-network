@@ -1,6 +1,6 @@
 import React from "react";
 import Post from "./Post/Post";
-import {ActionsTypes, PostType, addPostActionCreator, onPostChangeActionCreator} from "../../../redux/state";
+import {ActionsTypes, PostType, addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/state";
 
 type PropsType = {
     posts: Array<PostType>
@@ -18,7 +18,7 @@ const MyPosts = (props: PropsType) => {
 
     let onPostChange = () => {
         let text = newPostElement.current!.value;
-        props.dispatch(onPostChangeActionCreator(text));
+        props.dispatch(updateNewPostTextActionCreator(text));
     }
 
     return (

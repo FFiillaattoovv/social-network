@@ -43,14 +43,14 @@ export type storeType = {
 
 export type ActionsTypes =
     ReturnType<typeof addPostActionCreator>
-    | ReturnType<typeof onPostChangeActionCreator>
+    | ReturnType<typeof updateNewPostTextActionCreator>
     | ReturnType<typeof updateNewMessageBodyActionCreator>
     | ReturnType<typeof sendMessageActionCreator>
 
 
 export const addPostActionCreator = () => ({type: "ADD-POST"} as const)
 
-export const onPostChangeActionCreator = (text: string) => ({type: "UPDATE-NEW-POST-TEXT", newText: text} as const)
+export const updateNewPostTextActionCreator = (text: string) => ({type: "UPDATE-NEW-POST-TEXT", newText: text} as const)
 
 export const updateNewMessageBodyActionCreator = (text: string) => ({
     type: "UPDATE-NEW-MESSAGE-BODY",
