@@ -22,6 +22,7 @@ type ProfilePageType = {
 type DialogsPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
+    newMessageBody: string
 }
 
 type RootStateType = {
@@ -67,7 +68,8 @@ let store: storeType = {
                 {id: 1, message: "Hi!"},
                 {id: 2, message: "How are you"},
                 {id: 3, message: "I'm fine!"}
-            ]
+            ],
+            newMessageBody: ""
         },
         sidebar: {}
     },
