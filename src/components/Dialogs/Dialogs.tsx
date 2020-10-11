@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import classes from "./Dialogs.module.css"
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
@@ -13,6 +13,7 @@ import {
 type PropsType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
+    newMessageBody: string
     dispatch: (action: ActionsTypes) => void
 }
 const Dialogs = (props: PropsType) => {
@@ -22,7 +23,7 @@ const Dialogs = (props: PropsType) => {
     let onSendMessageClick = () => {
         props.dispatch(sendMessageCreator());
     }
-    let onNewMessageChange = (e) => {
+    let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let body = e.target.value;
         props.dispatch(updateNewMessageBodyCreator(body));
     }

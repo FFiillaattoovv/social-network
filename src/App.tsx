@@ -19,6 +19,7 @@ function App(props: PropsType) {
     let dialogs = props.store._state.dialogsPage.dialogs;
     let messages = props.store._state.dialogsPage.messages;
     let newPostText = props.store._state.profilePage.newPostText;
+    let newMessageBody = props.store._state.dialogsPage.newMessageBody;
 
     return (
         <div className="app-wrapper">
@@ -33,6 +34,7 @@ function App(props: PropsType) {
                 <Route path="/dialogs" render={() => <Dialogs
                     dialogs={dialogs}
                     messages={messages}
+                    newMessageBody={newMessageBody}
                     dispatch={props.store.dispatch.bind(props.store)}/>}/>
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Music/>}/>
