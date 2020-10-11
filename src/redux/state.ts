@@ -95,14 +95,7 @@ let store: storeType = {
         this._callSubscriber = observer;
     },
     dispatch(action) {
-        if (action.type === "ADD-POST") {
-            let newPost: PostType = {id: 3, message: this._state.profilePage.newPostText, likesCount: 0};
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = "";
-            this._callSubscriber();
-        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber();
+
         } else if (action.type === "UPDATE-NEW-MESSAGE-BODY") {
             this._state.dialogsPage.newMessageBody = action.body;
             this._callSubscriber();
