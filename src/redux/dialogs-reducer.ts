@@ -1,4 +1,6 @@
-const dialogsReducer = (state, action) => {
+import {ActionsTypes, DialogsPageType} from "./state";
+
+const dialogsReducer = (state: DialogsPageType, action: ActionsTypes) => {
     switch (action.type) {
         case "UPDATE-NEW-MESSAGE-BODY":
             state.newMessageBody = action.body;
