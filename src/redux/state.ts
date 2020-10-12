@@ -1,3 +1,6 @@
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+
 export type MessageType = {
     id?: number
     message: string
@@ -94,6 +97,11 @@ let store: storeType = {
     subscribe(observer) {
         this._callSubscriber = observer;
     },
-    dispatch(action) {}
+    dispatch(action) {
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._callSubscriber();
+    }
+}
 
 export default store;
