@@ -8,7 +8,7 @@ import {
     MessageType,
     sendMessageCreator,
     updateNewMessageBodyCreator
-} from "../../redux/state";
+} from "../../redux/dialogs-reducer";
 
 type PropsType = {
     dialogs: Array<DialogType>
