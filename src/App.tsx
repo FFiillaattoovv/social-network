@@ -14,7 +14,7 @@ type PropsType = {
 }
 
 function App(props: PropsType) {
-    debugger
+
     let state = props.store.getState()
 
     let posts = state.profilePage.posts;
