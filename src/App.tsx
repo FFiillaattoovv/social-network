@@ -17,27 +17,13 @@ function App(props: PropsType) {
 
     let state = props.store.getState()
 
-    let posts = state.profilePage.posts;
-    let dialogs = state.dialogsPage.dialogs;
-    let messages = state.dialogsPage.messages;
-    let newPostText = state.profilePage.newPostText;
-    let newMessageBody = state.dialogsPage.newMessageBody;
-
     return (
         <div className="app-wrapper">
             <Header/>
             <Navbar/>
             <div className="app-wrapper-content">
-                <Route path="/profile" render={() => <Profile
-                    posts={posts}
-                    newPostText={newPostText}
-                    dispatch={props.store.dispatch.bind(props.store)}
-                />}/>
-                <Route path="/dialogs" render={() => <Dialogs
-                    dialogs={dialogs}
-                    messages={messages}
-                    newMessageBody={newMessageBody}
-                    dispatch={props.store.dispatch.bind(props.store)}/>}/>
+                <Route path="/profile" render={() => <Profile store={state}/>}/>
+                <Route path="/dialogs" render={() => <Dialogs store={state}/>}/>
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Music/>}/>
                 <Route path="/settings" render={() => <Settings/>}/>
