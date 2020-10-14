@@ -14,11 +14,7 @@ const Profile = (props: PropsType) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPostsContainer
-                posts={props.posts}
-                newPostText={props.newPostText}
-                dispatch={props.dispatch}
-            />
+            <MyPostsContainer store={props.store} />
         </div>
     )
 }
