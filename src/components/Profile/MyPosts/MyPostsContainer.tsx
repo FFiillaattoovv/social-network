@@ -25,10 +25,10 @@ const MyPostsContainer = (props: PropsType) => {
 
     return (
         <StoreContext.Consumer>
-            <MyPosts updateNewPostText={onPostChange}
-                     addPost={addPost}
-                     posts={state.profilePage.posts}
-                     newPostText{state.profilePage.newPostText}/>
+            (store) => (<MyPosts updateNewPostText={onPostChange}
+                            addPost={addPost}
+                            posts={state.profilePage.posts}
+                            newPostText{state.profilePage.newPostText}/>)
         </StoreContext.Consumer>
     )
 }
