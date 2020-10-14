@@ -11,8 +11,6 @@ type PropsType = {
 }
 
 const MyPostsContainer = (props: PropsType) => {
-    let postsElements = props.posts.map(post => <Post message={post.message} likesCount={post.likesCount}/>)
-    let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     let addPost = () => {
         props.dispatch(addPostActionCreator());
