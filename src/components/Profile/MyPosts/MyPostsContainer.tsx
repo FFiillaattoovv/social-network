@@ -2,6 +2,7 @@ import React from "react";
 import {ActionsTypes, PostType} from "../../../redux/store";
 import MyPosts from "./MyPosts";
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
+import StoreContext from "../../../StoreContext";
 
 type PropsType = {
     posts: Array<PostType>
@@ -23,11 +24,12 @@ const MyPostsContainer = (props: PropsType) => {
     }
 
     return (
-        <MyPosts updateNewPostText={onPostChange}
-                 addPost={addPost}
-                 posts={state.profilePage.posts}
-                 newPostText{state.profilePage.newPostText}
-        />
+        <StoreContext.Consumer>
+            <MyPosts updateNewPostText={onPostChange}
+                     addPost={addPost}
+                     posts={state.profilePage.posts}
+                     newPostText{state.profilePage.newPostText}/>
+        </StoreContext.Consumer>
     )
 }
 export default MyPostsContainer;
