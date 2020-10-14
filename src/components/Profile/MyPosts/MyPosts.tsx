@@ -6,6 +6,8 @@ type PropsType = {
     posts: Array<PostType>
     newPostText: string
     dispatch: (action: ActionsTypes) => void
+    updateNewPostText: (text: string) => void
+    addPost: () => void
 }
 
 const MyPosts = (props: PropsType) => {

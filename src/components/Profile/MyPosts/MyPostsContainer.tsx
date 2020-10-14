@@ -1,5 +1,4 @@
 import React from "react";
-import Post from "./Post/Post";
 import {ActionsTypes, PostType} from "../../../redux/store";
 import MyPosts from "./MyPosts";
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
@@ -22,7 +21,7 @@ const MyPostsContainer = (props: PropsType) => {
     }
 
     return (
-        <MyPosts updateNewPostText={onPostChange} addPost={addPost}/>
+        <MyPosts updateNewPostText={onPostChange} addPost={addPost} posts={props.posts}/>
     )
 }
 export default MyPostsContainer;
