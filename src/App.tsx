@@ -8,18 +8,20 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from './components/Settings/Settings';
 import Profile from "./components/Profile/Profile";
-import {storeType} from "./redux/store";
 
 type PropsType = {
-    store: storeType
+    store: any
 }
 
 function App(props: PropsType) {
-    let posts = props.store._state.profilePage.posts;
-    let dialogs = props.store._state.dialogsPage.dialogs;
-    let messages = props.store._state.dialogsPage.messages;
-    let newPostText = props.store._state.profilePage.newPostText;
-    let newMessageBody = props.store._state.dialogsPage.newMessageBody;
+    debugger
+    let state = props.store.getState()
+
+    let posts = state.profilePage.posts;
+    let dialogs = state.dialogsPage.dialogs;
+    let messages = state.dialogsPage.messages;
+    let newPostText = state.profilePage.newPostText;
+    let newMessageBody = state.dialogsPage.newMessageBody;
 
     return (
         <div className="app-wrapper">
