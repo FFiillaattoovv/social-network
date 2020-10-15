@@ -1,16 +1,9 @@
 import React from "react";
-import {ActionsTypes, PostType} from "../../../redux/store";
 import MyPosts from "./MyPosts";
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
 import StoreContext from "../../../StoreContext";
 
-type PropsType = {
-    posts: Array<PostType>
-    newPostText: string
-    dispatch: (action: ActionsTypes) => void
-}
-
-const MyPostsContainer = (props: PropsType) => {
+const MyPostsContainer = () => {
 
     return (
         <StoreContext.Consumer>

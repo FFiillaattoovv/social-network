@@ -36,7 +36,7 @@ type RootStateType = {
 
 type sidebarType = {}
 
-export type storeType = {
+export type StoreType = {
     _state: RootStateType
     getState: () => RootStateType
     _callSubscriber: () => void
@@ -50,7 +50,7 @@ export type ActionsTypes =
     | ReturnType<typeof updateNewMessageBodyCreator>
     | ReturnType<typeof sendMessageCreator>
 
-let store: storeType = {
+let store: StoreType = {
     _state: {
         profilePage: {
             posts: [
