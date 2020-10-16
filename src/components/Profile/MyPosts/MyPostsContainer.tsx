@@ -4,7 +4,6 @@ import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../red
 import StoreContext from "../../../StoreContext";
 
 const MyPostsContainer = () => {
-
     return (
         <StoreContext.Consumer>
             {
