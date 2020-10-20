@@ -2,13 +2,15 @@ import React, {ChangeEvent} from "react";
 import classes from "./Dialogs.module.css"
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {ActionsTypes, DialogType, MessageType} from "../../redux/store";
+import {ActionsTypes, DialogsPageType, DialogType, MessageType} from "../../redux/store";
 
 type PropsType = {
-    dialogs: Array<DialogType>
-    messages: Array<MessageType>
-    newMessageBody: string
-    dispatch: (action: ActionsTypes) => void
+    // dialogs: Array<DialogType>
+    // messages: Array<MessageType>
+    // newMessageBody: string
+    sendMessage: () => void
+    updateNewMessageBody: (body: string) => void
+    dialogsPage: DialogsPageType
 }
 const Dialogs = (props: PropsType) => {
     let state = props.dialogsPage;
