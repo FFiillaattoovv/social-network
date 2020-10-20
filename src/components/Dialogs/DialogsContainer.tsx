@@ -1,4 +1,3 @@
-import React from "react";
 import Dialogs from "./Dialogs";
 import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
 import {connect} from "react-redux";
@@ -23,14 +22,16 @@ let mapDispatchToProps = (dispatch:Dispatch): MapDispatchType => {
     }
 }
 
+type MapStateType = {
+    dialogsPage: DialogsPageType
+}
+
 type MapDispatchType = {
     sendMessage: () => void
     updateNewMessageBody: (body: string) => void
 }
 
-type MapStateType = {
-    dialogsPage: DialogsPageType
-}
+
 
 
 
