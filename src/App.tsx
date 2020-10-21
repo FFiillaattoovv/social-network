@@ -8,6 +8,7 @@ import Music from "./components/Music/Music";
 import Settings from './components/Settings/Settings';
 import Profile from "./components/Profile/Profile";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import Users from "./components/Users/Users";
 
 function App() {
     return (
@@ -17,7 +18,7 @@ function App() {
             <div className="app-wrapper-content">
                 <Route path="/profile" render={() => <Profile/>}/>
                 <Route path="/dialogs" render={() => <DialogsContainer/>}/>
-                <Route path="/users" render={() => <div></div>}/>
+                <Route path="/users" render={() => <Users/>}/>
                 <Route path="/news" render={() => <News/>}/>
                 <Route path="/music" render={() => <Music/>}/>
                 <Route path="/settings" render={() => <Settings/>}/>
