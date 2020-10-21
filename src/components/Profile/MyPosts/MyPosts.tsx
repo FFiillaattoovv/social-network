@@ -10,7 +10,7 @@ type PropsType = {
 
 const MyPosts = (props: PropsType) => {
     let state = props.profilePage;
-    let postsElements = state.posts.map(post => <Post message={post.message} likesCount={post.likesCount}/>)
+    let postsElements = state.posts.map(post => <Post message={post.message} likesCount={post.likesCount} key={post.id}/>)
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     let onAddPost = () => {
