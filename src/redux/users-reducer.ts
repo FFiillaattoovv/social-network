@@ -2,7 +2,7 @@ let initialState = {
     users: [
         {
             id: 1,
-            photoUrl: "https://www.mariinsky.ru/images/cms/data/orchestra_biography/violin/smirnov_dmitry2018.jpg",
+            photoUrl: "https://pbs.twimg.com/profile_images/1236759527179124738/pEx2QkKw_400x400.jpg",
             followed: false,
             fullName: "Dmitry",
             status: "I am a boss",
