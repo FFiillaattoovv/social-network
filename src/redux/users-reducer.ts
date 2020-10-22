@@ -35,8 +35,7 @@ const usersReducer = (state = initialState, action) => {
                         return {...u, followed: true}
                     }
                     return u;
-                })
-                ]
+                })]
             };
         case "UNFOLLOW":
             return {
@@ -46,17 +45,22 @@ const usersReducer = (state = initialState, action) => {
                         return {...u, followed: false}
                     }
                     return u;
-                })
-                ]
+                })]
             };
-
+        case "SET-USERS":
+            return {
+                ...state,
+                users: [...state.users, action.users]
+            }
         default:
             return state;
     }
 }
 
-export const followAC = (userId) => ({type: "FOLLOW", userId})
+export const followAC = (userId) => ({type: "FOLLOW", userId});
 
-export const unfollowAC = (userId) => ({type: "UNFOLLOW", userId})
+export const unfollowAC = (userId) => ({type: "UNFOLLOW", userId});
+
+export const setUsersAC = (users) => ({type: "SET-USERS", users});
 
 export default usersReducer;
