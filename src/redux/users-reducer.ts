@@ -2,6 +2,7 @@ let initialState = {
     users: [
         {
             id: 1,
+            photoUrl: "https://www.mariinsky.ru/images/cms/data/orchestra_biography/violin/smirnov_dmitry2018.jpg",
             followed: false,
             fullName: "Dmitry",
             status: "I am a boss",
@@ -9,6 +10,7 @@ let initialState = {
         },
         {
             id: 2,
+            photoUrl: "https://pbs.twimg.com/profile_images/1062368194118197248/82fZyeo_.jpg",
             followed: true,
             fullName: "Sasha",
             status: "I am a boss too",
@@ -16,6 +18,7 @@ let initialState = {
         },
         {
             id: 3,
+            photoUrl: "https://pbs.twimg.com/profile_images/1102796114741227521/YiJ4QEAF_400x400.png",
             followed: false,
             fullName: "Andrew",
             status: "I am a boss too too",
