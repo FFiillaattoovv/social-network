@@ -1,6 +1,5 @@
 import profileReducer, {addPostActionCreator, updateNewPostTextActionCreator} from "./profile-reducer";
 import dialogsReducer, {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogs-reducer";
-import {followAC, setUsersAC, unfollowAC} from "./users-reducer";
 
 export type MessageType = {
     id?: number
@@ -42,7 +41,7 @@ export type StoreType = {
     getState: () => RootStateType
     _callSubscriber: () => void
     subscribe: (observer: () => void) => void
-    dispatch: (action: ActionsTypes) => void
+    dispatch: (action: any) => void
 }
 
 export type ActionsTypes =

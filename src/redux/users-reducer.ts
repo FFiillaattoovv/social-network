@@ -39,14 +39,14 @@ const usersReducer = (state: InitialStateType = initialState, action: UsersActio
     }
 }
 
-export const followAC = (userId: number) => ({type: "FOLLOW", userId} as const);
-export const unfollowAC = (userId: number) => ({type: "UNFOLLOW", userId} as const);
-export const setUsersAC = (users: Array<UserType>) => ({type: "SET-USERS", users} as const);
-
 type FollowActionType = ReturnType<typeof followAC>
 type UnFollowActionType = ReturnType<typeof unfollowAC>
 type SetUsersActionType = ReturnType<typeof setUsersAC>
 
 export type UsersActionsType = FollowActionType | UnFollowActionType | SetUsersActionType
+
+export const followAC = (userId: number) => ({type: "FOLLOW", userId} as const);
+export const unfollowAC = (userId: number) => ({type: "UNFOLLOW", userId} as const);
+export const setUsersAC = (users: Array<UserType>) => ({type: "SET-USERS", users} as const);
 
 export default usersReducer;
