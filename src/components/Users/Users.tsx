@@ -1,7 +1,22 @@
 import React from "react";
 import styles from "./users.module.css";
+import {UsersPropsType} from "./UsersContainer";
 
-let Users = (props) => {
+export type UserType = {
+    id: number
+    photoUrl: string
+    followed: boolean
+    fullName: string
+    status: string
+    location: LocationType
+}
+
+type LocationType = {
+    citi: string
+    country: string
+}
+
+let Users = (props: UsersPropsType) => {
     if (props.users.length === 0) {
         props.setUsers(
             [

@@ -1,9 +1,13 @@
+import {UserType} from "../components/Users/Users";
+
 let initialState = {
-    users: []
+    users: [] as Array<UserType>
 }
 
+type InitialStateType = typeof initialState
 
-const usersReducer = (state = initialState, action) => {
+
+const usersReducer = (state: InitialStateType = initialState, action: UsersActionsType): InitialStateType => {
     switch (action.type) {
         case "FOLLOW":
             return {
@@ -28,17 +32,21 @@ const usersReducer = (state = initialState, action) => {
         case "SET-USERS":
             return {
                 ...state,
-                users: [...state.users, action.users]
+                users: [...state.users, ...action.users]
             }
         default:
             return state;
     }
 }
 
-export const followAC = (userId) => ({type: "FOLLOW", userId});
+export const followAC = (userId: number) => ({type: "FOLLOW", userId} as const);
+export const unfollowAC = (userId: number) => ({type: "UNFOLLOW", userId} as const);
+export const setUsersAC = (users: Array<UserType>) => ({type: "SET-USERS", users} as const);
 
-export const unfollowAC = (userId) => ({type: "UNFOLLOW", userId});
+type FollowActionType = ReturnType<typeof followAC>
+type UnFollowActionType = ReturnType<typeof unfollowAC>
+type SetUsersActionType = ReturnType<typeof setUsersAC>
 
-export const setUsersAC = (users) => ({type: "SET-USERS", users});
+export type UsersActionsType = FollowActionType | UnFollowActionType | SetUsersActionType
 
 export default usersReducer;
