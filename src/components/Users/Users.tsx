@@ -29,7 +29,7 @@ let Users = (props: UsersPropsType) => {
                 props.users.map(u => <div key={u.id}>
                     <span>
                         <div>
-                            <img src={u.photoUrl} className={styles.userPhoto} alt="User avatar"/>
+                            <img src={u.photos.small != null ? u.photos.small : ""} className={styles.userPhoto} alt="User avatar"/>
                         </div>
                         <div>
                             {u.followed ? <button onClick={() => {
