@@ -8,7 +8,6 @@ import {Dispatch} from "redux";
 type MapStatePropsType = {
     users: Array<UserType>
 }
-
 type MapDispatchPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void

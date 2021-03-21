@@ -1,8 +1,7 @@
 import React from "react";
 import styles from "./users.module.css";
 import {UsersPropsType} from "./UsersContainer";
-import axios from "axios";
-import userPhoto from "../../assets/images/images.png";
+import axios from 'axios'
 
 export type UserType = {
     id: number
@@ -20,7 +19,6 @@ type LocationType = {
 
 let Users = (props: UsersPropsType) => {
     if (props.users.length === 0) {
-        debugger
         axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
             props.setUsers(response.data.items)
         });
@@ -31,7 +29,7 @@ let Users = (props: UsersPropsType) => {
                 props.users.map(u => <div key={u.id}>
                     <span>
                         <div>
-                            <img src={u.photos.small != null ? u.photos.small : userPhoto} className={styles.userPhoto} alt="User avatar"/>
+                            <img src={u.photos.small != null ? u.photos.small : ""} className={styles.userPhoto} alt="User avatar"/>
                         </div>
                         <div>
                             {u.followed ? <button onClick={() => {
