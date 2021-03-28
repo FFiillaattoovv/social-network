@@ -1,11 +1,11 @@
-import React from "react";
-import styles from "./users.module.css";
+import React from 'react';
+import styles from './users.module.css';
 import axios from 'axios'
 import userPhoto from '../../assets/images/images.png';
 
 export type UserType = {
     id: number
-    photos: {small: string, large: string}
+    photos: { small: string, large: string }
     followed: boolean
     name: string
     status: string
@@ -23,14 +23,16 @@ type PropsType = {
     setUsers: (users: Array<UserType>) => void
 }
 let Users = (props: PropsType) => {
-    debugger
-    if (props.users.length === 0) {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-            props.setUsers(response.data.items)
-        });
+    const getUsers = () => {
+        if (props.users.length === 0) {
+            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+                props.setUsers(response.data.items)
+            });
+        }
     }
     return (
         <div>
+            <button onClick={getUsers}>Get users</button>
             {
                 props.users.map(u => <div key={u.id}>
                     <span>
@@ -52,8 +54,8 @@ let Users = (props: PropsType) => {
                             <div>{u.status}</div>
                         </span>
                         <span>
-                            <div>{"u.location.citi"}</div>
-                            <div>{"u.location.country"}</div>
+                            <div>{'u.location.citi'}</div>
+                            <div>{'u.location.country'}</div>
                         </span>
                     </span>
                 </div>)
