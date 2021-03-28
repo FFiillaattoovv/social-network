@@ -1,5 +1,5 @@
-import profileReducer, {addPostActionCreator, updateNewPostTextActionCreator} from "./profile-reducer";
-import dialogsReducer, {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogs-reducer";
+import profileReducer, {addPostActionCreator, updateNewPostTextActionCreator} from './profile-reducer';
+import dialogsReducer, {sendMessageCreator, updateNewMessageBodyCreator} from './dialogs-reducer';
 
 export type MessageType = {
     id?: number
@@ -54,25 +54,25 @@ let store: StoreType = {
     _state: {
         profilePage: {
             posts: [
-                {id: 1, message: "Hi, how are you?", likesCount: 4},
-                {id: 2, message: "It's my first post.", likesCount: 16}
+                {id: 1, message: 'Hi, how are you?', likesCount: 4},
+                {id: 2, message: 'It\'s my first post.', likesCount: 16}
             ],
-            newPostText: "Test text"
+            newPostText: 'Test text'
         },
         dialogsPage: {
             dialogs: [
-                {id: 1, name: "Andrey"},
-                {id: 2, name: "Maria"},
-                {id: 3, name: "Maxim"},
-                {id: 4, name: "Paul"},
-                {id: 5, name: "Elena"}
+                {id: 1, name: 'Andrey'},
+                {id: 2, name: 'Maria'},
+                {id: 3, name: 'Maxim'},
+                {id: 4, name: 'Paul'},
+                {id: 5, name: 'Elena'}
             ],
             messages: [
-                {id: 1, message: "Hi!"},
-                {id: 2, message: "How are you"},
-                {id: 3, message: "I'm fine!"}
+                {id: 1, message: 'Hi!'},
+                {id: 2, message: 'How are you'},
+                {id: 3, message: 'I\'m fine!'}
             ],
-            newMessageBody: ""
+            newMessageBody: ''
         },
         sidebar: {}
     },

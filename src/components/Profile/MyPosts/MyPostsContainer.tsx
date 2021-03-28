@@ -1,9 +1,9 @@
-import MyPosts from "./MyPosts";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
-import {connect} from "react-redux";
-import {AppStateType} from "../../../redux/redux-store";
-import {Dispatch} from "redux";
-import {ProfilePageType} from "../../../redux/store";
+import MyPosts from './MyPosts';
+import {addPostActionCreator, updateNewPostTextActionCreator} from '../../../redux/profile-reducer';
+import {connect} from 'react-redux';
+import {AppStateType} from '../../../redux/redux-store';
+import {Dispatch} from 'redux';
+import {ProfilePageType} from '../../../redux/store';
 
 let mapStateToProps = (state: AppStateType): MapStateType => {
     return {
