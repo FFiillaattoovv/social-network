@@ -31,6 +31,10 @@ type PropsType = {
 
 class Users extends React.Component<PropsType> {
 
+    state = {
+        portionNumber: 1
+    }
+
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`).then(response => {
             this.props.setUsers(response.data.items);
@@ -45,6 +49,18 @@ class Users extends React.Component<PropsType> {
         });
     }
 
+    previousPageToggle = () => {
+        this.setState({
+            portionNumber: this.state.portionNumber - 1
+        })
+    }
+
+    nextPageToggle = () => {
+        this.setState({
+            portionNumber: this.state.portionNumber + 1
+        })
+    }
+
     render() {
         let pagesCount = Math.ceil(this.props.totalUserCount / this.props.pageSize);
 
@@ -54,14 +70,24 @@ class Users extends React.Component<PropsType> {
             pages.push(i);
         }
 
+        let portionSize = 10;
+
+        let portionCount = Math.ceil(pagesCount / portionSize);
+
+        let leftPortionPageNumber = (this.state.portionNumber - 1) * portionSize + 1;
+
+        let rightPortionPageNumber = this.state.portionNumber * portionSize;
+
         return (
             <div>
                 <div>
-                    {pages.map(e => {
+                    {this.state.portionNumber > 1 && <button onClick={this.previousPageToggle}>PREV</button>}
+                    {pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber).map(e => {
                         return <span onClick={() => {
                             this.onPageChanged(e)
-                        }} className={`${this.props.currentPage === e && styles.selectedPage}`}>{e}</span>
+                        }} className={`${this.props.currentPage === e && styles.selectedPage} ${styles.pageNumber}`}>{e}</span>
                     })}
+                    {portionCount > this.state.portionNumber && <button onClick={this.nextPageToggle}>NEXT</button>}
                 </div>
                 {
                     this.props.users.map(u => <div key={u.id}>
