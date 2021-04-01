@@ -3,8 +3,8 @@ import {UserType} from '../components/Users/Users';
 let initialState = {
     users: [] as Array<UserType>,
     pageSize: 3 as number,
-    totalUserCount: 10 as number,
-    currentPage: 1 as number
+    totalUserCount: 16 as number,
+    currentPage: 5 as number
 }
 
 type InitialStateType = typeof initialState

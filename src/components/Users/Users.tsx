@@ -48,7 +48,7 @@ class Users extends React.Component<PropsType> {
             <div>
                 <div>
                     {pages.map(e => {
-                        return <span className={styles.selectedPage}>{e}</span>
+                        return <span className={`${this.props.currentPage === e && styles.selectedPage}`}>{e}</span>
                     })}
                 </div>
                 {
