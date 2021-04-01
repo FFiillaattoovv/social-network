@@ -1,9 +1,9 @@
-import {UserType} from "../components/Users/Users";
+import {UserType} from '../components/Users/Users';
 
 let initialState = {
     users: [] as Array<UserType>,
     pageSize: 3 as number,
-    totalUserCount: 0 as number,
+    totalUserCount: 10 as number,
     currentPage: 1 as number
 }
 
@@ -12,7 +12,7 @@ type InitialStateType = typeof initialState
 
 const usersReducer = (state: InitialStateType = initialState, action: UsersActionsType): InitialStateType => {
     switch (action.type) {
-        case "FOLLOW":
+        case 'FOLLOW':
             return {
                 ...state,
                 users: [...state.users.map(u => {
@@ -22,7 +22,7 @@ const usersReducer = (state: InitialStateType = initialState, action: UsersActio
                     return u;
                 })]
             };
-        case "UNFOLLOW":
+        case 'UNFOLLOW':
             return {
                 ...state,
                 users: [...state.users.map(u => {
@@ -32,7 +32,7 @@ const usersReducer = (state: InitialStateType = initialState, action: UsersActio
                     return u;
                 })]
             };
-        case "SET-USERS":
+        case 'SET-USERS':
             return {
                 ...state,
                 users: [...state.users, ...action.users]
@@ -48,8 +48,8 @@ type SetUsersActionType = ReturnType<typeof setUsersAC>
 
 export type UsersActionsType = FollowActionType | UnFollowActionType | SetUsersActionType
 
-export const followAC = (userId: number) => ({type: "FOLLOW", userId} as const);
-export const unfollowAC = (userId: number) => ({type: "UNFOLLOW", userId} as const);
-export const setUsersAC = (users: Array<UserType>) => ({type: "SET-USERS", users} as const);
+export const followAC = (userId: number) => ({type: 'FOLLOW', userId} as const);
+export const unfollowAC = (userId: number) => ({type: 'UNFOLLOW', userId} as const);
+export const setUsersAC = (users: Array<UserType>) => ({type: 'SET-USERS', users} as const);
 
 export default usersReducer;
