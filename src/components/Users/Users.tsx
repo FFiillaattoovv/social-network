@@ -23,6 +23,7 @@ type PropsType = {
     unfollow: (userId: number) => void
     setUsers: (users: Array<UserType>) => void
     setCurrentPage: (currentPage: number) => void
+    setTotalUsersCount: (totalCount: number) => void
     totalUserCount: number
     pageSize: number
     currentPage: number
@@ -32,7 +33,8 @@ class Users extends React.Component<PropsType> {
 
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`).then(response => {
-            this.props.setUsers(response.data.items)
+            this.props.setUsers(response.data.items);
+            this.props.setTotalUsersCount(response.data.totalCount);
         });
     }
 

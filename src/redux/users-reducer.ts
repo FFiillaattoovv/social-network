@@ -3,7 +3,7 @@ import {UserType} from '../components/Users/Users';
 let initialState = {
     users: [] as Array<UserType>,
     pageSize: 3 as number,
-    totalUserCount: 16 as number,
+    totalUserCount: 0 as number,
     currentPage: 1 as number
 }
 
@@ -41,6 +41,11 @@ const usersReducer = (state: InitialStateType = initialState, action: UsersActio
                 ...state,
                 currentPage: action.currentPage
             };
+        case 'SET-TOTAL-USERS-COUNT':
+            return {
+                ...state,
+                totalUserCount: action.totalCount
+            };
         default:
             return state;
     }
@@ -50,12 +55,14 @@ type FollowActionType = ReturnType<typeof followAC>
 type UnFollowActionType = ReturnType<typeof unfollowAC>
 type SetUsersActionType = ReturnType<typeof setUsersAC>
 type SetCurrentPageActionType = ReturnType<typeof setCurrentPageAC>
+type setTotalUsersCountActionType = ReturnType<typeof setTotalUsersCountAC>
 
-export type UsersActionsType = FollowActionType | UnFollowActionType | SetUsersActionType | SetCurrentPageActionType
+export type UsersActionsType = FollowActionType | UnFollowActionType | SetUsersActionType | SetCurrentPageActionType | setTotalUsersCountActionType
 
 export const followAC = (userId: number) => ({type: 'FOLLOW', userId} as const);
 export const unfollowAC = (userId: number) => ({type: 'UNFOLLOW', userId} as const);
 export const setUsersAC = (users: Array<UserType>) => ({type: 'SET-USERS', users} as const);
 export const setCurrentPageAC = (currentPage: number) => ({type: 'SET-CURRENT-PAGE', currentPage} as const);
+export const setTotalUsersCountAC = (totalCount: number) => ({type: 'SET-TOTAL-USERS-COUNT', totalCount} as const);
 
 export default usersReducer;

@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import Users, {UserType} from './Users';
-import {followAC, setCurrentPageAC, setUsersAC, unfollowAC} from '../../redux/users-reducer';
+import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC} from '../../redux/users-reducer';
 import {AppStateType} from '../../redux/redux-store';
 import {Dispatch} from 'redux';
 
@@ -15,6 +15,7 @@ type MapDispatchPropsType = {
     unfollow: (userId: number) => void
     setUsers: (users: Array<UserType>) => void
     setCurrentPage: (currentPage: number) => void
+    setTotalUsersCount: (totalCount: number) => void
 }
 
 let mapStateToProps = (state: AppStateType): MapStatePropsType => {
@@ -39,6 +40,9 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
         },
         setCurrentPage: (currentPage: number) => {
             dispatch(setCurrentPageAC(currentPage));
+        },
+        setTotalUsersCount: (totalCount: number) => {
+            dispatch(setTotalUsersCountAC(totalCount));
         }
     }
 }
