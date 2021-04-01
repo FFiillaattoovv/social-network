@@ -22,6 +22,7 @@ type PropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users: Array<UserType>) => void
+    setCurrentPage: (currentPage: number) => void
     totalUserCount: number
     pageSize: number
     currentPage: number
@@ -30,7 +31,7 @@ type PropsType = {
 class Users extends React.Component<PropsType> {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}`).then(response => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`).then(response => {
             this.props.setUsers(response.data.items)
         });
     }
@@ -48,7 +49,9 @@ class Users extends React.Component<PropsType> {
             <div>
                 <div>
                     {pages.map(e => {
-                        return <span className={`${this.props.currentPage === e && styles.selectedPage}`}>{e}</span>
+                        return <span onClick={() => {
+                            this.props.setCurrentPage(e)
+                        }} className={`${this.props.currentPage === e && styles.selectedPage}`}>{e}</span>
                     })}
                 </div>
                 {
