@@ -20,9 +20,6 @@ type PropsType = {
     users: Array<UserType>
     follow: (userId: number) => void
     unfollow: (userId: number) => void
-    setUsers: (users: Array<UserType>) => void
-    setCurrentPage: (currentPage: number) => void
-    setTotalUsersCount: (totalCount: number) => void
     onPageChanged: (pageNumber: number) => void
     totalUserCount: number
     pageSize: number
