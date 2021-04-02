@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './users.module.css';
 import axios from 'axios'
 import userPhoto from '../../assets/images/images.png';
@@ -24,73 +24,54 @@ type PropsType = {
     setUsers: (users: Array<UserType>) => void
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalCount: number) => void
+    onPageChanged: (pageNumber: number) => void
     totalUserCount: number
     pageSize: number
     currentPage: number
 }
 
-class Users extends React.Component<PropsType> {
+const Users = (props: PropsType) => {
 
-    state = {
-        portionNumber: 1
+    let pagesCount = Math.ceil(props.totalUserCount / props.pageSize);
+
+    let pages = []
+
+    for (let i = 1; pagesCount >= i; i++) {
+        pages.push(i);
     }
 
-    componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`).then(response => {
-            this.props.setUsers(response.data.items);
-            this.props.setTotalUsersCount(response.data.totalCount);
-        });
+    let portionSize = 10;
+
+    let portionCount = Math.ceil(pagesCount / portionSize);
+
+    let [portionNumber, setPortionNumber] = useState(1);
+
+    let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
+
+    let rightPortionPageNumber = portionNumber * portionSize;
+
+    let previousPageToggle = () => {
+        setPortionNumber(portionNumber - 1);
     }
 
-    onPageChanged = (pageNumber: number) => {
-        this.props.setCurrentPage(pageNumber)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${pageNumber}`).then(response => {
-            this.props.setUsers(response.data.items)
-        });
+    let nextPageToggle = () => {
+        setPortionNumber(portionNumber + 1);
     }
 
-    previousPageToggle = () => {
-        this.setState({
-            portionNumber: this.state.portionNumber - 1
-        })
-    }
-
-    nextPageToggle = () => {
-        this.setState({
-            portionNumber: this.state.portionNumber + 1
-        })
-    }
-
-    render() {
-        let pagesCount = Math.ceil(this.props.totalUserCount / this.props.pageSize);
-
-        let pages = []
-
-        for (let i = 1; pagesCount >= i; i++) {
-            pages.push(i);
-        }
-
-        let portionSize = 10;
-
-        let portionCount = Math.ceil(pagesCount / portionSize);
-
-        let leftPortionPageNumber = (this.state.portionNumber - 1) * portionSize + 1;
-
-        let rightPortionPageNumber = this.state.portionNumber * portionSize;
-
-        return (
+    return (
+        <div>
             <div>
-                <div>
-                    {this.state.portionNumber > 1 && <button onClick={this.previousPageToggle}>PREV</button>}
-                    {pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber).map(e => {
-                        return <span onClick={() => {
-                            this.onPageChanged(e)
-                        }} className={`${this.props.currentPage === e && styles.selectedPage} ${styles.pageNumber}`}>{e}</span>
-                    })}
-                    {portionCount > this.state.portionNumber && <button onClick={this.nextPageToggle}>NEXT</button>}
-                </div>
-                {
-                    this.props.users.map(u => <div key={u.id}>
+                {portionNumber > 1 && <button onClick={previousPageToggle}>PREV</button>}
+                {pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber).map(e => {
+                    return <span onClick={() => {
+                        props.onPageChanged(e)
+                    }}
+                                 className={`${props.currentPage === e && styles.selectedPage} ${styles.pageNumber}`}>{e}</span>
+                })}
+                {portionCount > portionNumber && <button onClick={nextPageToggle}>NEXT</button>}
+            </div>
+            {
+                props.users.map(u => <div key={u.id}>
                     <span>
                         <div>
                             <img src={u.photos.small ? u.photos.small : userPhoto} className={styles.userPhoto}
@@ -98,13 +79,13 @@ class Users extends React.Component<PropsType> {
                         </div>
                         <div>
                             {u.followed ? <button onClick={() => {
-                                this.props.unfollow(u.id)
+                                props.unfollow(u.id)
                             }}>Unfollow</button> : <button onClick={() => {
-                                this.props.follow(u.id)
+                                props.follow(u.id)
                             }}>Follow</button>}
                         </div>
                     </span>
-                        <span>
+                    <span>
                         <span>
                             <div>{u.name}</div>
                             <div>{u.status}</div>
@@ -114,11 +95,10 @@ class Users extends React.Component<PropsType> {
                             <div>{'u.location.country'}</div>
                         </span>
                     </span>
-                    </div>)
-                }
-            </div>
-        )
-    }
+                </div>)
+            }
+        </div>
+    )
 }
 
 export default Users;

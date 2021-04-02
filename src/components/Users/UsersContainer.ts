@@ -3,6 +3,7 @@ import Users, {UserType} from './Users';
 import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC} from '../../redux/users-reducer';
 import {AppStateType} from '../../redux/redux-store';
 import {Dispatch} from 'redux';
+import UsersAPIComponent from './UsersAPIComponent';
 
 type MapStatePropsType = {
     users: Array<UserType>,
@@ -47,4 +48,4 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Users);
+export default connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
