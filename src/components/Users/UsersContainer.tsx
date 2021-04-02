@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import Users, {UserType} from './Users';
+import Users from './Users';
 import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC} from '../../redux/users-reducer';
 import {AppStateType} from '../../redux/redux-store';
 import {Dispatch} from 'redux';
@@ -46,7 +46,7 @@ type PropsType = {
     currentPage: number
 }
 
-class UsersAPIComponent extends React.Component<PropsType> {
+class UsersContainer extends React.Component<PropsType> {
 
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${this.props.pageSize}&page=${this.props.currentPage}`).then(response => {
@@ -99,4 +99,4 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
