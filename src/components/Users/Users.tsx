@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import styles from './users.module.css';
-import axios from 'axios'
 import userPhoto from '../../assets/images/images.png';
 
 export type UserType = {

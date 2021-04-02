@@ -1,7 +1,5 @@
 import React from 'react';
-import styles from './users.module.css';
 import axios from 'axios'
-import userPhoto from '../../assets/images/images.png';
 import Users from './Users';
 
 export type UserType = {
