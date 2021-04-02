@@ -47,11 +47,15 @@ const Users = (props: PropsType) => {
     let rightPortionPageNumber = portionNumber * portionSize;
 
     let previousPageToggle = () => {
-        setPortionNumber(portionNumber - 1);
+        setPortionNumber((prevValue) => {
+            return prevValue - 1;
+        });
     }
 
     let nextPageToggle = () => {
-        setPortionNumber(portionNumber + 1);
+        setPortionNumber((prevValue) => {
+            return prevValue + 1;
+        });
     }
 
     return (
