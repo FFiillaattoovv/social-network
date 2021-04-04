@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import styles from './users.module.css';
 import userPhoto from '../../assets/images/images.png';
+import {NavLink} from 'react-router-dom';
 
 export type UserType = {
     id: number
@@ -74,8 +75,10 @@ const Users = (props: PropsType) => {
                 props.users.map(u => <div key={u.id}>
                     <span>
                         <div>
-                            <img src={u.photos.small ? u.photos.small : userPhoto} className={styles.userPhoto}
-                                 alt="User avatar"/>
+                            <NavLink to={'/profile/' + u.id}>
+                                <img src={u.photos.small ? u.photos.small : userPhoto} className={styles.userPhoto}
+                                     alt="User avatar"/>
+                            </NavLink>
                         </div>
                         <div>
                             {u.followed ? <button onClick={() => {
