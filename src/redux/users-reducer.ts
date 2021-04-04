@@ -57,12 +57,12 @@ const usersReducer = (state: InitialStateType = initialState, action: UsersActio
     }
 }
 
-type FollowActionType = ReturnType<typeof followAC>
-type UnFollowActionType = ReturnType<typeof unfollowAC>
-type SetUsersActionType = ReturnType<typeof setUsersAC>
-type SetCurrentPageActionType = ReturnType<typeof setCurrentPageAC>
-type SetTotalUsersCountActionType = ReturnType<typeof setTotalUsersCountAC>
-type SetIsFetchingActionType = ReturnType<typeof setIsFetchingAC>
+type FollowActionType = ReturnType<typeof follow>
+type UnFollowActionType = ReturnType<typeof unfollow>
+type SetUsersActionType = ReturnType<typeof setUsers>
+type SetCurrentPageActionType = ReturnType<typeof setCurrentPage>
+type SetTotalUsersCountActionType = ReturnType<typeof setTotalUsersCount>
+type SetIsFetchingActionType = ReturnType<typeof setIsFetching>
 
 export type UsersActionsType =
     FollowActionType
@@ -72,11 +72,11 @@ export type UsersActionsType =
     | SetTotalUsersCountActionType
     | SetIsFetchingActionType
 
-export const followAC = (userId: number) => ({type: 'FOLLOW', userId} as const);
-export const unfollowAC = (userId: number) => ({type: 'UNFOLLOW', userId} as const);
-export const setUsersAC = (users: Array<UserType>) => ({type: 'SET-USERS', users} as const);
-export const setCurrentPageAC = (currentPage: number) => ({type: 'SET-CURRENT-PAGE', currentPage} as const);
-export const setTotalUsersCountAC = (totalCount: number) => ({type: 'SET-TOTAL-USERS-COUNT', totalCount} as const);
-export const setIsFetchingAC = (isFetching: boolean) => ({type: 'SET-IS-FETCHING', isFetching} as const);
+export const follow = (userId: number) => ({type: 'FOLLOW', userId} as const);
+export const unfollow = (userId: number) => ({type: 'UNFOLLOW', userId} as const);
+export const setUsers = (users: Array<UserType>) => ({type: 'SET-USERS', users} as const);
+export const setCurrentPage = (currentPage: number) => ({type: 'SET-CURRENT-PAGE', currentPage} as const);
+export const setTotalUsersCount = (totalCount: number) => ({type: 'SET-TOTAL-USERS-COUNT', totalCount} as const);
+export const setIsFetching = (isFetching: boolean) => ({type: 'SET-IS-FETCHING', isFetching} as const);
 
 export default usersReducer;
