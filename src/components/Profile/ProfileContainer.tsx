@@ -1,12 +1,26 @@
 import React from 'react';
 import Profile from './Profile';
 import axios from 'axios';
-import {PropsType} from '../Users/UsersContainer';
+import {connect} from 'react-redux';
+import {AppStateType} from '../../redux/redux-store';
+import {ProfileType, setUserProfileActionCreator, PostType} from '../../redux/profile-reducer';
 
-class ProfileContainer extends React.Component<PropsType> {
+type MSTPType = {
+    posts: Array<PostType>
+    newPostText: string
+    profile: Array<ProfileType> | null
+}
+
+type MDTPType = {
+    setUserProfileActionCreator: (profile: Array<ProfileType> | null) => void
+}
+
+type ProfilePropsType = MSTPType & MDTPType
+
+class ProfileContainer extends React.Component<ProfilePropsType> {
     componentDidMount() {
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(response => {
-            this.props.setUserProfile(response.data);
+            this.props.setUserProfileActionCreator(response.data);
         });
     }
 
@@ -19,4 +33,10 @@ class ProfileContainer extends React.Component<PropsType> {
     }
 }
 
-export default ProfileContainer;
+let mapStateToProps = (state: AppStateType): MSTPType => ({
+    profile: state.profilePage.profile,
+    newPostText: state.profilePage.newPostText,
+    posts: state.profilePage.posts
+});
+
+export default connect(mapStateToProps, {setUserProfileActionCreator})(ProfileContainer);

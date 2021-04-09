@@ -9,9 +9,11 @@ type PropsType = {
     sendMessage: () => void
     updateNewMessageBody: (body: string) => void
 }
+
 const Dialogs = (props: PropsType) => {
     let state = props.dialogsPage;
-    let dialogsElements = state.dialogs.map((dialog: DialogType) => <DialogItem name={dialog.name} id={dialog.id}
+    let dialogsElements = state.dialogs.map((dialog: DialogType) => <DialogItem name={dialog.name}
+                                                                                id={dialog.id}
                                                                                 key={dialog.id}/>);
     let messagesElements = state.messages.map((message: MessageType) => <Message message={message.message}
                                                                                  key={message.id}/>);
