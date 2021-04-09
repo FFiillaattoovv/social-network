@@ -8,11 +8,11 @@ import {ProfileType, setUserProfileActionCreator, PostType} from '../../redux/pr
 type MSTPType = {
     posts: Array<PostType>
     newPostText: string
-    profile: Array<ProfileType> | null
+    profile: ProfileType | null
 }
 
 type MDTPType = {
-    setUserProfileActionCreator: (profile: Array<ProfileType> | null) => void
+    setUserProfileActionCreator: (profile: ProfileType | null) => void
 }
 
 type ProfilePropsType = MSTPType & MDTPType
@@ -27,7 +27,7 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
     render() {
         return (
             <div>
-                <Profile/>
+                <Profile {...this.props} profile={this.props.profile}/>
             </div>
         )
     }

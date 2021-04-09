@@ -30,7 +30,7 @@ let initialState = {
         {id: 2, message: 'It\'s my first post.', likesCount: 16}
     ] as Array<PostType>,
     newPostText: 'Test text' as string,
-    profile: null as Array<ProfileType> | null
+    profile: null as ProfileType | null
 }
 
 type InitialStateType = typeof initialState
@@ -72,6 +72,9 @@ export const addPostActionCreator = () => ({type: 'ADD-POST'} as const)
 
 export const updateNewPostTextActionCreator = (text: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: text} as const)
 
-export const setUserProfileActionCreator = (profile: Array<ProfileType> | null) => ({type: 'SET-USER-PROFILE', profile} as const)
+export const setUserProfileActionCreator = (profile: ProfileType | null) => ({
+    type: 'SET-USER-PROFILE',
+    profile
+} as const)
 
 export default profileReducer;
