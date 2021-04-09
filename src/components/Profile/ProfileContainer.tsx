@@ -4,6 +4,7 @@ import axios from 'axios';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
 import {ProfileType, setUserProfileActionCreator, PostType} from '../../redux/profile-reducer';
+import {withRouter, RouteComponentProps} from 'react-router-dom';
 
 type MSTPType = {
     posts: Array<PostType>
@@ -17,14 +18,26 @@ type MDTPType = {
 
 type ProfilePropsType = MSTPType & MDTPType
 
-class ProfileContainer extends React.Component<ProfilePropsType> {
+type PathParamsType = {
+    userId: string
+}
+
+type PropsType = RouteComponentProps<PathParamsType> & ProfilePropsType;
+
+class ProfileContainer extends React.Component<PropsType> {
+
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`).then(response => {
+        let userId = this.props.match.params.userId;
+        if (!userId) {
+            userId = '2';
+        }
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
             this.props.setUserProfileActionCreator(response.data);
         });
     }
 
     render() {
+        debugger
         return (
             <div>
                 <Profile {...this.props} profile={this.props.profile}/>
@@ -39,4 +52,6 @@ let mapStateToProps = (state: AppStateType): MSTPType => ({
     posts: state.profilePage.posts
 });
 
-export default connect(mapStateToProps, {setUserProfileActionCreator})(ProfileContainer);
+let WithUrlDataContainerComponent = withRouter(ProfileContainer)
+
+export default connect(mapStateToProps, {setUserProfileActionCreator})(WithUrlDataContainerComponent);
