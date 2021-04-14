@@ -40,7 +40,6 @@ let mapStateToProps = (state: AppStateType) => ({
     email: state.auth.email,
     login: state.auth.login,
     isAuth: state.auth.isAuth
-
 });
 
 export default connect(mapStateToProps, {setAuthUserData})(HeaderContainer);
