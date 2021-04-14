@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styles from './users.module.css';
 import userPhoto from '../../assets/images/images.png';
 import {NavLink} from 'react-router-dom';
-import axios from 'axios';
+import {followAPI} from '../../api/api';
 
 export type UserType = {
     id: number
@@ -82,25 +82,21 @@ const Users = (props: PropsType) => {
                             </NavLink>
                         </div>
                         <div>
-                            {u.followed ? <button onClick={() => {
-                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                    withCredentials: true,
-                                    headers: {'API-KEY': '015f6ef9-f2e2-4c2d-a216-55334fed10bf'}
-                                }).then(response => {
-                                    if (response.data.resultCode === 0) {
-                                        props.unfollow(u.id)
-                                    }
-                                });
-                            }}>Unfollow</button> : <button onClick={() => {
-                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                                    withCredentials: true,
-                                    headers: {'API-KEY': '015f6ef9-f2e2-4c2d-a216-55334fed10bf'}
-                                }).then(response => {
-                                    if (response.data.resultCode === 0) {
-                                        props.follow(u.id)
-                                    }
-                                });
-                            }}>Follow</button>}
+                            {
+                                u.followed ? <button onClick={() => {
+                                    followAPI.unfollow(u.id).then(response => {
+                                        if (response.data.resultCode === 0) {
+                                            props.unfollow(u.id)
+                                        }
+                                    });
+                                }}>Unfollow</button> : <button onClick={() => {
+                                    followAPI.follow(u.id).then(response => {
+                                        if (response.data.resultCode === 0) {
+                                            props.follow(u.id)
+                                        }
+                                    });
+                                }}>Follow</button>
+                            }
                         </div>
                     </span>
                     <span>
