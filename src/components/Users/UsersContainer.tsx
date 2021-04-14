@@ -4,7 +4,7 @@ import {follow, setCurrentPage, setIsFetching, setTotalUsersCount, setUsers, unf
 import {AppStateType} from '../../redux/redux-store';
 import React from 'react';
 import Preloader from '../common/Preloader/Preloader';
-import {getUsers} from '../../api/api';
+import {usersAPI} from '../../api/api';
 
 type MapStatePropsType = {
     users: Array<UserType>,
@@ -44,7 +44,7 @@ class UsersContainer extends React.Component<UsersPropsType> {
     componentDidMount() {
         this.props.setIsFetching(true);
 
-        getUsers(this.props.pageSize, this.props.currentPage).then(data => {
+        usersAPI.getUsers(this.props.pageSize, this.props.currentPage).then(data => {
             this.props.setIsFetching(false);
             this.props.setUsers(data.items);
             this.props.setTotalUsersCount(data.totalCount);
@@ -55,7 +55,7 @@ class UsersContainer extends React.Component<UsersPropsType> {
         this.props.setCurrentPage(pageNumber);
         this.props.setIsFetching(true);
 
-        getUsers(this.props.pageSize, pageNumber).then(data => {
+        usersAPI.getUsers(this.props.pageSize, pageNumber).then(data => {
             this.props.setIsFetching(false);
             this.props.setUsers(data.items);
         });
