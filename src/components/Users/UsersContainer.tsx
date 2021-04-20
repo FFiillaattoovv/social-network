@@ -31,6 +31,7 @@ type MDTPType = {
     setTotalUsersCount: (totalCount: number) => void
     setIsFetching: (isFetching: boolean) => void
     setToggleFollowingInProgress: (isFetching: boolean, userId: number) => void
+    getUsersThunkCreator: (pageSize: number, currentPage: number) => void
 }
 
 export type UserType = {
@@ -52,7 +53,7 @@ export type UsersPropsType = MapStatePropsType & MDTPType
 class UsersContainer extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-        this.props.getUsersThunkCreator();
+        this.props.getUsersThunkCreator( this.props.pageSize, this.props.currentPage);
     }
 
     onPageChanged = (pageNumber: number) => {
