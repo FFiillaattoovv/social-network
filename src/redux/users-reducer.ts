@@ -1,5 +1,5 @@
 import {UserType} from '../components/Users/Users';
-import {usersAPI} from '../api/api';
+import {followAPI, usersAPI} from '../api/api';
 import {Dispatch} from 'redux';
 
 let initialState = {
@@ -107,5 +107,20 @@ export const getUsersThunkCreator = (pageSize: number, currentPage: number) => {
         });
     }
 };
+
+export const followThunkCreator = (id: number, currentPage: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(setToggleFollowingInProgress(true, id));
+
+        followAPI.follow(id).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(followSuccess(id));
+            }
+            dispatch(setToggleFollowingInProgress(false, id));
+        });
+    }
+};
+
+
 
 export default usersReducer;
