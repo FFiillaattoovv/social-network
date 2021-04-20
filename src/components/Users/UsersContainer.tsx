@@ -52,13 +52,7 @@ export type UsersPropsType = MapStatePropsType & MDTPType
 class UsersContainer extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-        this.props.setIsFetching(true);
 
-        usersAPI.getUsers(this.props.pageSize, this.props.currentPage).then(data => {
-            this.props.setIsFetching(false);
-            this.props.setUsers(data.items);
-            this.props.setTotalUsersCount(data.totalCount);
-        });
     }
 
     onPageChanged = (pageNumber: number) => {

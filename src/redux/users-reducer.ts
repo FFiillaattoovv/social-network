@@ -1,4 +1,6 @@
 import {UserType} from '../components/Users/Users';
+import {usersAPI} from '../api/api';
+import {Dispatch} from 'redux';
 
 let initialState = {
     users: [] as Array<UserType>,
@@ -93,5 +95,17 @@ export const setToggleFollowingInProgress = (isFetching: boolean, userId: number
     isFetching,
     userId
 } as const);
+
+export const getUsersThunkCreator = (pageSize: number, currentPage: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(setIsFetching(true));
+
+        usersAPI.getUsers(pageSize, currentPage).then(data => {
+            dispatch(setIsFetching(false));
+            dispatch(setUsers(data.items));
+            dispatch(setTotalUsersCount(data.totalCount));
+        });
+    }
+};
 
 export default usersReducer;
