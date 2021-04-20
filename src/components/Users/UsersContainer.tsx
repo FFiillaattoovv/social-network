@@ -4,10 +4,7 @@ import {
     follow,
     getUsersThunkCreator,
     setCurrentPage,
-    setIsFetching,
     setToggleFollowingInProgress,
-    setTotalUsersCount,
-    setUsers,
     unfollow
 } from '../../redux/users-reducer';
 import {AppStateType} from '../../redux/redux-store';
@@ -95,10 +92,7 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
 export default connect(mapStateToProps, {
     follow,
     unfollow,
-    setUsers,
     setCurrentPage,
-    setTotalUsersCount,
-    setIsFetching,
     setToggleFollowingInProgress,
     getUsersThunkCreator
 })(UsersContainer);
