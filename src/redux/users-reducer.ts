@@ -108,7 +108,7 @@ export const getUsersThunkCreator = (pageSize: number, currentPage: number) => {
     }
 };
 
-export const followThunkCreator = (id: number, currentPage: number) => {
+export const followThunkCreator = (id: number) => {
     return (dispatch: Dispatch) => {
         dispatch(setToggleFollowingInProgress(true, id));
 
@@ -121,6 +121,16 @@ export const followThunkCreator = (id: number, currentPage: number) => {
     }
 };
 
-
+export const unfollowThunkCreator = (id: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(setToggleFollowingInProgress(true, id));
+        followAPI.unfollow(id).then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(unfollowSuccess(id));
+            }
+            dispatch(setToggleFollowingInProgress(false, id));
+        });
+    }
+};
 
 export default usersReducer;
