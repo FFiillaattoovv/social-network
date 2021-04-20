@@ -1,4 +1,4 @@
-import {createStore, combineReducers} from 'redux';
+import {createStore, combineReducers, applyMiddleware} from 'redux';
 import profileReducer from './profile-reducer';
 import dialogsReducer from './dialogs-reducer';
 import usersReducer from './users-reducer';
@@ -15,6 +15,6 @@ type RootReducerType = typeof reducers;
 
 export type AppStateType = ReturnType<RootReducerType>;
 
-let store = createStore(reducers);
+let store = createStore(reducers, applyMiddleware());
 
 export default store;

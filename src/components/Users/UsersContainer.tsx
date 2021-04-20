@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import Users from './Users';
 import {
-    follow,
+    follow, getUsersThunkCreator,
     setCurrentPage,
     setIsFetching,
     setToggleFollowingInProgress,
@@ -52,7 +52,7 @@ export type UsersPropsType = MapStatePropsType & MDTPType
 class UsersContainer extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-
+        this.props.getUsersThunkCreator();
     }
 
     onPageChanged = (pageNumber: number) => {
@@ -104,5 +104,6 @@ export default connect(mapStateToProps, {
     setCurrentPage,
     setTotalUsersCount,
     setIsFetching,
-    setToggleFollowingInProgress
+    setToggleFollowingInProgress,
+    getUsersThunkCreator
 })(UsersContainer);
