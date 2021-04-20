@@ -70,7 +70,6 @@ class UsersContainer extends React.Component<UsersPropsType> {
                                pageSize={this.props.pageSize}
                                currentPage={this.props.currentPage}
                                followingInProgress={this.props.followingInProgress}
-                               setToggleFollowingInProgress={this.props.setToggleFollowingInProgress}
                         />
                 }
             </>
