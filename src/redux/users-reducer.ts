@@ -67,8 +67,8 @@ const usersReducer = (state: InitialStateType = initialState, action: UsersActio
     }
 }
 
-type FollowActionType = ReturnType<typeof follow>
-type UnFollowActionType = ReturnType<typeof unfollow>
+type FollowActionType = ReturnType<typeof followSuccess>
+type UnFollowActionType = ReturnType<typeof unfollowSuccess>
 type SetUsersActionType = ReturnType<typeof setUsers>
 type SetCurrentPageActionType = ReturnType<typeof setCurrentPage>
 type SetTotalUsersCountActionType = ReturnType<typeof setTotalUsersCount>
@@ -84,8 +84,8 @@ export type UsersActionsType =
     | SetIsFetchingActionType
     | SetToggleFollowingInProgressActionType
 
-export const follow = (userId: number) => ({type: 'FOLLOW', userId} as const);
-export const unfollow = (userId: number) => ({type: 'UNFOLLOW', userId} as const);
+export const followSuccess = (userId: number) => ({type: 'FOLLOW', userId} as const);
+export const unfollowSuccess = (userId: number) => ({type: 'UNFOLLOW', userId} as const);
 export const setUsers = (users: Array<UserType>) => ({type: 'SET-USERS', users} as const);
 export const setCurrentPage = (currentPage: number) => ({type: 'SET-CURRENT-PAGE', currentPage} as const);
 export const setTotalUsersCount = (totalCount: number) => ({type: 'SET-TOTAL-USERS-COUNT', totalCount} as const);

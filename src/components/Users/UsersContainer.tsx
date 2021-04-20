@@ -1,11 +1,11 @@
 import {connect} from 'react-redux';
 import Users from './Users';
 import {
-    follow,
+    followSuccess,
     getUsersThunkCreator,
     setCurrentPage,
     setToggleFollowingInProgress,
-    unfollow
+    unfollowSuccess
 } from '../../redux/users-reducer';
 import {AppStateType} from '../../redux/redux-store';
 import React from 'react';
@@ -90,8 +90,8 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
 }
 
 export default connect(mapStateToProps, {
-    follow,
-    unfollow,
+    follow: followSuccess,
+    unfollow: unfollowSuccess,
     setCurrentPage,
     setToggleFollowingInProgress,
     getUsersThunkCreator
