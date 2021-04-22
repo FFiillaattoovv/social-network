@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import styles from './users.module.css';
 import userPhoto from '../../assets/images/images.png';
 import {NavLink} from 'react-router-dom';
-import {followAPI} from '../../api/api';
 
 export type UserType = {
     id: number
@@ -20,8 +19,8 @@ type LocationType = {
 
 type PropsType = {
     users: Array<UserType>
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
+    followThunkCreator: (userId: number) => void
+    unfollowThunkCreator: (userId: number) => void
     onPageChanged: (pageNumber: number) => void
     totalUserCount: number
     pageSize: number
@@ -85,9 +84,9 @@ const Users = (props: PropsType) => {
                         <div>
                             {
                                 u.followed ? <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                                     onClick={() => {props.unfollow(u.id)}}>Unfollow</button> :
+                                                     onClick={() => {props.unfollowThunkCreator(u.id)}}>Unfollow</button> :
                                              <button disabled={props.followingInProgress.some(id => id === u.id)}
-                                                     onClick={() => {props.follow(u.id)}}>Follow</button>
+                                                     onClick={() => {props.followThunkCreator(u.id)}}>Follow</button>
                             }
                         </div>
                     </span>
