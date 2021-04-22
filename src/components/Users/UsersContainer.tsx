@@ -4,7 +4,10 @@ import {
     followThunkCreator,
     unfollowThunkCreator,
     getUsersThunkCreator,
-    setCurrentPage, setUsers, setTotalUsersCount, setIsFetching
+    setCurrentPage,
+    setUsers,
+    setTotalUsersCount,
+    setIsFetching
 } from '../../redux/users-reducer';
 import {AppStateType} from '../../redux/redux-store';
 import React from 'react';

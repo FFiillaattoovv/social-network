@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
 import {ProfileType, setUserProfileActionCreator, PostType} from '../../redux/profile-reducer';
 import {withRouter, RouteComponentProps} from 'react-router-dom';
+import { profileAPI } from '../../api/api';
 
 type MSTPType = {
     posts: Array<PostType>
@@ -31,7 +32,7 @@ class ProfileContainer extends React.Component<PropsType> {
         if (!userId) {
             userId = '2';
         }
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
+        profileAPI.getProfile(userId).then(response => {
             this.props.setUserProfileActionCreator(response.data);
         });
     }
