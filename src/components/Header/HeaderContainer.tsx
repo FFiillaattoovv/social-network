@@ -1,9 +1,8 @@
 import React from 'react';
 import Header from './Header';
 import {connect} from 'react-redux';
-import {setAuthUserData} from '../../redux/auth-reducer';
+import {getAuthUserDataThunkCreator} from '../../redux/auth-reducer';
 import {AppStateType} from '../../redux/redux-store';
-import {authAPI} from '../../api/api';
 
 type MSTPType = {
     id: number | null,
@@ -13,19 +12,14 @@ type MSTPType = {
 }
 
 type MDTPType = {
-    setAuthUserData: (id: number | null, email: string | null, login: string | null) => void
+    getAuthUserDataThunkCreator: () => void
 }
 
 type PropsType = MSTPType & MDTPType;
 
 class HeaderContainer extends React.Component<PropsType> {
     componentDidMount() {
-        authAPI.getAuth().then(response => {
-            if (response.data.resultCode === 0) {
-                let {id, email, login} = response.data.data;
-                this.props.setAuthUserData(id, email, login);
-            }
-        });
+        this.props.getAuthUserDataThunkCreator();
     }
 
     render() {
@@ -40,4 +34,4 @@ let mapStateToProps = (state: AppStateType) => ({
     isAuth: state.auth.isAuth
 });
 
-export default connect(mapStateToProps, {setAuthUserData})(HeaderContainer);
+export default connect(mapStateToProps, {getAuthUserDataThunkCreator})(HeaderContainer);

@@ -1,3 +1,6 @@
+import {Dispatch} from 'redux';
+import {authAPI} from '../api/api';
+
 let initialState = {
     id: null as number | null,
     email: null as string | null,
@@ -26,5 +29,14 @@ export const setAuthUserData = (id: number | null, email: string | null, login: 
     type: 'SET-USER-DATA',
     data: {id, email, login}
 } as const)
+
+export const getAuthUserDataThunkCreator = () => (dispatch: Dispatch) => {
+    authAPI.getAuth().then(response => {
+        if (response.data.resultCode === 0) {
+            let {id, email, login} = response.data.data;
+            dispatch(setAuthUserData(id, email, login));
+        }
+    });
+}
 
 export default authReducer;

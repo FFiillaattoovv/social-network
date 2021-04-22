@@ -86,6 +86,4 @@ export const getUserProfileThunkCreator = (userId: string) => (dispatch: Dispatc
     });
 }
 
-
-
 export default profileReducer;
