@@ -1,3 +1,6 @@
+import {Dispatch} from 'redux';
+import {profileAPI} from '../api/api';
+
 export type ProfileType = {
     userId: number
     lookingForAJob: boolean
@@ -76,5 +79,13 @@ export const setUserProfileActionCreator = (profile: ProfileType | null) => ({
     type: 'SET-USER-PROFILE',
     profile
 } as const)
+
+export const getUserProfileThunkCreator = (userId: string) => (dispatch: Dispatch) => {
+    profileAPI.getProfile(userId).then(response => {
+        dispatch(setUserProfileActionCreator(response.data));
+    });
+}
+
+
 
 export default profileReducer;

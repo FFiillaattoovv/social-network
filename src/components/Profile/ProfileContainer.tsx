@@ -2,9 +2,8 @@ import React from 'react';
 import Profile from './Profile';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
-import {PostType, ProfileType, setUserProfileActionCreator} from '../../redux/profile-reducer';
+import {getUserProfileThunkCreator, PostType, ProfileType} from '../../redux/profile-reducer';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
-import {profileAPI} from '../../api/api';
 
 type MSTPType = {
     posts: Array<PostType>
@@ -13,7 +12,7 @@ type MSTPType = {
 }
 
 type MDTPType = {
-    setUserProfileActionCreator: (profile: ProfileType | null) => void
+    getUserProfileThunkCreator: (userId: string) => void
 }
 
 type ProfilePropsType = MSTPType & MDTPType
@@ -31,9 +30,7 @@ class ProfileContainer extends React.Component<PropsType> {
         if (!userId) {
             userId = '2';
         }
-        profileAPI.getProfile(userId).then(response => {
-            this.props.setUserProfileActionCreator(response.data);
-        });
+        this.props.getUserProfileThunkCreator(userId);
     }
 
     render() {
@@ -53,4 +50,4 @@ let mapStateToProps = (state: AppStateType): MSTPType => ({
 
 let WithUrlDataContainerComponent = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps, {setUserProfileActionCreator})(WithUrlDataContainerComponent);
+export default connect(mapStateToProps, {getUserProfileThunkCreator})(WithUrlDataContainerComponent);
