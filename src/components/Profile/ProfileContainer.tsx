@@ -3,12 +3,13 @@ import Profile from './Profile';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
 import {getUserProfileThunkCreator, PostType, ProfileType} from '../../redux/profile-reducer';
-import {RouteComponentProps, withRouter} from 'react-router-dom';
+import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom';
 
 type MSTPType = {
     posts: Array<PostType>
     newPostText: string
-    profile: ProfileType | null
+    profile: ProfileType | null,
+    isAuth: boolean
 }
 
 type MDTPType = {
@@ -42,12 +43,18 @@ class ProfileContainer extends React.Component<PropsType> {
     }
 }
 
+let AuthRedirectComponent = (props: PropsType) => {
+    if(!props.isAuth) return <Redirect to={'/login'}/>;
+    return <ProfileContainer {...props}/>
+}
+
 let mapStateToProps = (state: AppStateType): MSTPType => ({
     profile: state.profilePage.profile,
     newPostText: state.profilePage.newPostText,
-    posts: state.profilePage.posts
+    posts: state.profilePage.posts,
+    isAuth: state.auth.isAuth
 });
 
-let WithUrlDataContainerComponent = withRouter(ProfileContainer)
+let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
 
 export default connect(mapStateToProps, {getUserProfileThunkCreator})(WithUrlDataContainerComponent);
