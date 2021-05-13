@@ -9,7 +9,6 @@ type MSTPType = {
     posts: Array<PostType>
     newPostText: string
     profile: ProfileType | null,
-    isAuth: boolean
 }
 
 type MDTPType = {
@@ -44,7 +43,6 @@ class ProfileContainer extends React.Component<PropsType> {
 }
 
 let AuthRedirectComponent = (props: PropsType) => {
-    if(!props.isAuth) return <Redirect to={'/login'}/>;
     return <ProfileContainer {...props}/>
 }
 
@@ -52,7 +50,6 @@ let mapStateToProps = (state: AppStateType): MSTPType => ({
     profile: state.profilePage.profile,
     newPostText: state.profilePage.newPostText,
     posts: state.profilePage.posts,
-    isAuth: state.auth.isAuth
 });
 
 let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
