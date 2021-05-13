@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
 import {getUserProfileThunkCreator, PostType, ProfileType} from '../../redux/profile-reducer';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
+import {withAuthRedirect} from '../../hok/withAuthRedirect';
 
 type MSTPType = {
     posts: Array<PostType>
@@ -54,4 +55,4 @@ let mapStateToProps = (state: AppStateType): MSTPType => ({
 
 let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
 
-export default connect(mapStateToProps, {getUserProfileThunkCreator})(WithUrlDataContainerComponent);
+export default withAuthRedirect(connect(mapStateToProps, {getUserProfileThunkCreator})(WithUrlDataContainerComponent));
