@@ -2,7 +2,6 @@ import React from 'react';
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 import {ProfileType} from '../../redux/profile-reducer';
-import {Redirect} from 'react-router-dom';
 
 type PropsType = {
     profile: ProfileType | null

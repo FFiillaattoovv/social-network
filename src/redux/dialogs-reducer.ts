@@ -1,34 +1,34 @@
-import {DialogsPageType} from "./store";
+import {DialogsPageType} from './store';
 
 let initialState = {
     dialogs: [
-        {id: 1, name: "Andrey"},
-        {id: 2, name: "Maria"},
-        {id: 3, name: "Maxim"},
-        {id: 4, name: "Paul"},
-        {id: 5, name: "Elena"}
+        {id: 1, name: 'Andrey'},
+        {id: 2, name: 'Maria'},
+        {id: 3, name: 'Maxim'},
+        {id: 4, name: 'Paul'},
+        {id: 5, name: 'Elena'}
     ],
     messages: [
-        {id: 1, message: "Hi!"},
-        {id: 2, message: "How are you"},
-        {id: 3, message: "I'm fine!"}
+        {id: 1, message: 'Hi!'},
+        {id: 2, message: 'How are you'},
+        {id: 3, message: 'I\'m fine!'}
     ],
-    newMessageBody: ""
+    newMessageBody: ''
 }
 
 const dialogsReducer = (state: DialogsPageType = initialState, action: DialogsActionsType): DialogsPageType => {
     switch (action.type) {
-        case "UPDATE-NEW-MESSAGE-BODY": {
-            return  {
+        case 'UPDATE-NEW-MESSAGE-BODY': {
+            return {
                 ...state,
                 newMessageBody: action.body
             };
         }
-        case "SEND-MESSAGE": {
+        case 'SEND-MESSAGE': {
             let body = state.newMessageBody;
-            return  {
+            return {
                 ...state,
-                newMessageBody: "",
+                newMessageBody: '',
                 messages: [...state.messages, {id: 6, message: body}]
             };
         }
@@ -43,10 +43,10 @@ export type sendMessageActionType = ReturnType<typeof sendMessageCreator>
 export type DialogsActionsType = updateNewMessageBodyActionType | sendMessageActionType
 
 export const updateNewMessageBodyCreator = (text: string) => ({
-    type: "UPDATE-NEW-MESSAGE-BODY",
+    type: 'UPDATE-NEW-MESSAGE-BODY',
     body: text
 } as const)
 
-export const sendMessageCreator = () => ({type: "SEND-MESSAGE"} as const)
+export const sendMessageCreator = () => ({type: 'SEND-MESSAGE'} as const)
 
 export default dialogsReducer;

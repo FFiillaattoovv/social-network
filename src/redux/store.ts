@@ -1,4 +1,4 @@
-import profileReducer, {addPostActionCreator, updateNewPostTextActionCreator} from './profile-reducer';
+import {addPostActionCreator, updateNewPostTextActionCreator} from './profile-reducer';
 import dialogsReducer, {sendMessageCreator, updateNewMessageBodyCreator} from './dialogs-reducer';
 
 export type MessageType = {
