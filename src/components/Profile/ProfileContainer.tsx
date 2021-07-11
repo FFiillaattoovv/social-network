@@ -10,7 +10,7 @@ import {compose} from 'redux';
 type MSTPType = {
     posts: Array<PostType>
     newPostText: string
-    profile: ProfileType | null,
+    profile: ProfileType | null
 }
 
 type MDTPType = {
@@ -47,7 +47,7 @@ class ProfileContainer extends React.Component<PropsType> {
 let mapStateToProps = (state: AppStateType): MSTPType => ({
     profile: state.profilePage.profile,
     newPostText: state.profilePage.newPostText,
-    posts: state.profilePage.posts,
+    posts: state.profilePage.posts
 });
 
 
