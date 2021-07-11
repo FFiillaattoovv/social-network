@@ -51,10 +51,8 @@ let mapStateToProps = (state: AppStateType): MSTPType => ({
 });
 
 
-
-
 export default compose<React.ComponentType>(
+    connect(mapStateToProps, {getUserProfileThunkCreator}),
     withRouter,
-    withAuthRedirect,
-    connect(mapStateToProps, {getUserProfileThunkCreator})
+    withAuthRedirect
 )(ProfileContainer);
