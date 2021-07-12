@@ -6,27 +6,28 @@ type PropsType = {
 }
 
 class ProfileStatus extends React.Component<PropsType> {
-
     state = {
-        editMode: false
+        editMode: false,
+        status: this.props.status
     }
 
     activateEditMode = (): void => {
-        console.log(this)
         this.setState({
             editMode: true
-        })
+        });
     }
 
     deactivateEditMode = (): void => {
         this.setState({
             editMode: false
-        })
+        });
+        this.props.updateStatus(this.state.status);
     }
 
     onChangeStatus = (event: ChangeEvent<HTMLInputElement>) => {
-        let status = event.target.value;
-        this.props.updateStatus(status)
+        this.setState({
+            status: event.target.value
+        });
     }
 
     render() {
@@ -35,7 +36,8 @@ class ProfileStatus extends React.Component<PropsType> {
                 {
                     this.state.editMode ?
                         <div>
-                            <input onChange={this.onChangeStatus} onBlur={this.deactivateEditMode} autoFocus type="text" value={this.props.status}/>
+                            <input onChange={this.onChangeStatus} onBlur={this.deactivateEditMode} autoFocus type="text"
+                                   value={this.state.status}/>
                         </div>
                         :
                         <div>
