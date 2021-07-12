@@ -2,7 +2,12 @@ import React from 'react';
 import Profile from './Profile';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/redux-store';
-import {getUserProfileThunkCreator, PostType, ProfileType} from '../../redux/profile-reducer';
+import {
+    getUserProfileThunkCreator,
+    getUserStatusThunkCreator,
+    PostType,
+    ProfileType, updateUserStatusThunkCreator
+} from '../../redux/profile-reducer';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {withAuthRedirect} from '../../hok/withAuthRedirect';
 import {compose} from 'redux';
@@ -11,10 +16,13 @@ type MSTPType = {
     posts: Array<PostType>
     newPostText: string
     profile: ProfileType | null
+    status: string
 }
 
 type MDTPType = {
     getUserProfileThunkCreator: (userId: string) => void
+    getUserStatusThunkCreator: (userId: string) => void
+    updateUserStatusThunkCreator: (status: string) => void
 }
 
 type ProfilePropsType = MSTPType & MDTPType
@@ -33,12 +41,13 @@ class ProfileContainer extends React.Component<PropsType> {
             userId = '2';
         }
         this.props.getUserProfileThunkCreator(userId);
+        this.props.getUserStatusThunkCreator(userId);
     }
 
     render() {
         return (
             <div>
-                <Profile {...this.props} profile={this.props.profile}/>
+                <Profile {...this.props} profile={this.props.profile} updateStatus={this.props.updateUserStatusThunkCreator}/>
             </div>
         )
     }
@@ -47,12 +56,13 @@ class ProfileContainer extends React.Component<PropsType> {
 let mapStateToProps = (state: AppStateType): MSTPType => ({
     profile: state.profilePage.profile,
     newPostText: state.profilePage.newPostText,
-    posts: state.profilePage.posts
+    posts: state.profilePage.posts,
+    status: state.profilePage.status
 });
 
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getUserProfileThunkCreator}),
+    connect(mapStateToProps, {getUserProfileThunkCreator, getUserStatusThunkCreator, updateUserStatusThunkCreator}),
     withRouter,
     withAuthRedirect
 )(ProfileContainer);
