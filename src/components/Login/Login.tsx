@@ -2,9 +2,23 @@ import React from 'react';
 
 const Login = () => {
     return (
-        <h1>
-            Please login
-        </h1>
+        <div>
+            <h1>Login</h1>
+            <LoginForm/>
+        </div>
+    )
+}
+
+const LoginForm = () => {
+    return (
+        <form action="">
+            <div><input type="text" placeholder={'Login'}/></div>
+            <div><input type="text" placeholder={'Password'}/></div>
+            <div><input type="checkbox"/>remember me</div>
+            <div>
+                <button>Login</button>
+            </div>
+        </form>
     )
 }
 
