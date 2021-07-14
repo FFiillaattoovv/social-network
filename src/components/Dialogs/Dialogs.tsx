@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import classes from './Dialogs.module.css'
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
@@ -19,15 +19,6 @@ const Dialogs = (props: PropsType) => {
                                                                                 key={dialog.id}/>);
     let messagesElements = state.messages.map((message: MessageType) => <Message message={message.message}
                                                                                  key={message.id}/>);
-    let newMessageBody = state.newMessageBody;
-
-    // let onSendMessageClick = () => {
-    //     props.sendMessage();
-    // }
-    let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let body = e.target.value;
-        props.updateNewMessageBody(body);
-    }
 
     const addNewMessage = (values: MessageFormType) => {
         props.sendMessage(values.newMessageBody);
@@ -42,9 +33,6 @@ const Dialogs = (props: PropsType) => {
                 <div>{messagesElements}</div>
                 <div>
                     <AddMessageFormRedux onSubmit={addNewMessage}/>
-                    <div>
-                        {/*<button onClick={onSendMessageClick}>Send</button>*/}
-                    </div>
                 </div>
             </div>
         </div>
