@@ -16,8 +16,8 @@ let mapStateToProps = (state: AppStateType): MapStateType => {
 
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchType => {
     return {
-        sendMessage: () => {
-            dispatch(sendMessageCreator());
+        sendMessage: (newMessageBody) => {
+            dispatch(sendMessageCreator(newMessageBody));
         },
         updateNewMessageBody: (body: string) => {
             dispatch(updateNewMessageBodyCreator(body));
@@ -31,7 +31,7 @@ type MapStateType = {
 }
 
 type MapDispatchType = {
-    sendMessage: () => void
+    sendMessage: (newMessageBody: string) => void
     updateNewMessageBody: (body: string) => void
 }
 

@@ -12,8 +12,7 @@ let initialState = {
         {id: 1, message: 'Hi!'},
         {id: 2, message: 'How are you'},
         {id: 3, message: 'I\'m fine!'}
-    ],
-    newMessageBody: ''
+    ]
 }
 
 const dialogsReducer = (state: DialogsPageType = initialState, action: DialogsActionsType): DialogsPageType => {
@@ -25,10 +24,9 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: DialogsAc
             };
         }
         case 'SEND-MESSAGE': {
-            let body = state.newMessageBody;
+            let body = action.newMessageBody;
             return {
                 ...state,
-                newMessageBody: '',
                 messages: [...state.messages, {id: 6, message: body}]
             };
         }
@@ -47,6 +45,6 @@ export const updateNewMessageBodyCreator = (text: string) => ({
     body: text
 } as const)
 
-export const sendMessageCreator = () => ({type: 'SEND-MESSAGE'} as const)
+export const sendMessageCreator = (newMessageBody: string) => ({type: 'SEND-MESSAGE', newMessageBody} as const)
 
 export default dialogsReducer;
