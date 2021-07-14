@@ -17,12 +17,6 @@ let initialState = {
 
 const dialogsReducer = (state: DialogsPageType = initialState, action: DialogsActionsType): DialogsPageType => {
     switch (action.type) {
-        case 'UPDATE-NEW-MESSAGE-BODY': {
-            return {
-                ...state,
-                newMessageBody: action.body
-            };
-        }
         case 'SEND-MESSAGE': {
             let body = action.newMessageBody;
             return {
@@ -35,15 +29,9 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: DialogsAc
     }
 }
 
-export type updateNewMessageBodyActionType = ReturnType<typeof updateNewMessageBodyCreator>
 export type sendMessageActionType = ReturnType<typeof sendMessageCreator>
 
-export type DialogsActionsType = updateNewMessageBodyActionType | sendMessageActionType
-
-export const updateNewMessageBodyCreator = (text: string) => ({
-    type: 'UPDATE-NEW-MESSAGE-BODY',
-    body: text
-} as const)
+export type DialogsActionsType = sendMessageActionType
 
 export const sendMessageCreator = (newMessageBody: string) => ({type: 'SEND-MESSAGE', newMessageBody} as const)
 
