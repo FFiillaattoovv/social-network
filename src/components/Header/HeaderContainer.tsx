@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import {connect} from 'react-redux';
-import {getAuthUserDataThunkCreator} from '../../redux/auth-reducer';
+import {getAuthUserDataThunkCreator, logoutThunkCreator} from '../../redux/auth-reducer';
 import {AppStateType} from '../../redux/redux-store';
 
 type MSTPType = {
@@ -13,6 +13,7 @@ type MSTPType = {
 
 type MDTPType = {
     getAuthUserDataThunkCreator: () => void
+    logoutThunkCreator: () => void
 }
 
 type PropsType = MSTPType & MDTPType;
@@ -34,4 +35,4 @@ let mapStateToProps = (state: AppStateType) => ({
     isAuth: state.auth.isAuth
 });
 
-export default connect(mapStateToProps, {getAuthUserDataThunkCreator})(HeaderContainer);
+export default connect(mapStateToProps, {getAuthUserDataThunkCreator, logoutThunkCreator})(HeaderContainer);
