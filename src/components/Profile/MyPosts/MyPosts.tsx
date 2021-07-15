@@ -1,40 +1,56 @@
 import React from 'react';
 import Post from './Post/Post';
 import {ProfilePageType} from '../../../redux/store';
+import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 
 type PropsType = {
     profilePage: ProfilePageType
-    addPost: () => void
-    updateNewPostText: (text: string) => void
+    addPost: (newPostBody: string) => void
 }
 
 const MyPosts = (props: PropsType) => {
+
     let state = props.profilePage;
-    let postsElements = state.posts.map(post => <Post message={post.message} likesCount={post.likesCount}
-                                                      key={post.id}/>)
-    let newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    let onAddPost = () => {
-        props.addPost();
-    }
+    let postsElements = state.posts.map(post => <Post message={post.message} likesCount={post.likesCount} key={post.id}/>);
 
-    let onPostChange = () => {
-        let text = newPostElement.current!.value;
-        props.updateNewPostText(text);
+    const addNewPost = (values: PostFormType) => {
+        props.addPost(values.newPostBody);
     }
 
     return (
         <div>
             <div>
                 <h3>My posts</h3>
-                <textarea onChange={onPostChange} ref={newPostElement} value={state.newPostText}/>
             </div>
             <div>
-                <button onClick={onAddPost}>Add post</button>
+                <AddPostFormRedux onSubmit={addNewPost}/>
             </div>
             <div>New post</div>
             {postsElements}
         </div>
     )
+};
+
+type PostFormType = {
+    newPostBody: string
+};
+
+const AddPostForm: React.FC<InjectedFormProps<PostFormType>> = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field component={'textarea'} name={'newPostBody'} placeholder="Enter your message"/>
+            </div>
+            <div>
+                <button>Add post</button>
+            </div>
+        </form>
+    )
 }
+
+const AddPostFormRedux = reduxForm<PostFormType>({
+    form: 'postAddMessageForm'
+})(AddPostForm);
+
 export default MyPosts;

@@ -32,7 +32,6 @@ let initialState = {
         {id: 1, message: 'Hi, how are you?', likesCount: 4},
         {id: 2, message: 'It\'s my first post.', likesCount: 16}
     ] as Array<PostType>,
-    newPostText: 'Test text' as string,
     profile: null as ProfileType | null,
     status: '' as string
 }
@@ -42,17 +41,10 @@ type InitialStateType = typeof initialState
 const profileReducer = (state: InitialStateType = initialState, action: ProfileActionsType): InitialStateType => {
     switch (action.type) {
         case 'ADD-POST': {
-            let newPost: PostType = {id: 3, message: state.newPostText, likesCount: 0};
+            let newPost: PostType = {id: 3, message: action.newPostBody, likesCount: 0};
             return {
                 ...state,
-                posts: [...state.posts, newPost],
-                newPostText: ''
-            }
-        }
-        case 'UPDATE-NEW-POST-TEXT': {
-            return {
-                ...state,
-                newPostText: action.newText
+                posts: [...state.posts, newPost]
             }
         }
         case 'SET-USER-PROFILE': {
@@ -73,17 +65,15 @@ const profileReducer = (state: InitialStateType = initialState, action: ProfileA
 }
 
 export type addPostActionType = ReturnType<typeof addPostActionCreator>
-export type updateNewPostTextActionType = ReturnType<typeof updateNewPostTextActionCreator>
 export type setUserProfileActionType = ReturnType<typeof setUserProfileActionCreator>
 export type setUserStatusActionType = ReturnType<typeof setUserStatusActionCreator>
 
 export type ProfileActionsType =
     addPostActionType
-    | updateNewPostTextActionType
     | setUserProfileActionType
     | setUserStatusActionType
 
-export const addPostActionCreator = () => ({type: 'ADD-POST'} as const)
+export const addPostActionCreator = (newPostBody: string) => ({type: 'ADD-POST', newPostBody: newPostBody} as const)
 
 export const updateNewPostTextActionCreator = (text: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: text} as const)
 
