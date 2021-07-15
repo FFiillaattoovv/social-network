@@ -1,16 +1,7 @@
 import Login from './Login';
 import {connect} from 'react-redux';
-import {Dispatch} from 'redux';
-import {authAPI} from '../../api/api';
+import {loginThunkCreator} from '../../redux/auth-reducer';
 
-export const postLoginDataThunkCreator = (email: string, password: string) => (dispatch: Dispatch) => {
-    authAPI.postAuth(email, password);
-}
-
-const mapStateToProps = () => {
-
-};
-
-const LoginContainer = connect(mapStateToProps)(Login);
+const LoginContainer = connect(null, {loginThunkCreator})(Login);
 
 export default LoginContainer;

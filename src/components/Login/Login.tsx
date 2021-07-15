@@ -3,9 +3,13 @@ import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {maxLengthCreator, required} from '../../utils/validators';
 import {Input} from '../common/FormControls/FormControls';
 
-const Login = () => {
-    const onSubmit = (formData: FormDataType) => {
+type LoginPropsType = {
+    loginThunkCreator: (email: string, password: string, rememberMe: boolean) => void
+}
 
+const Login = (props: LoginPropsType) => {
+    const onSubmit = (formData: FormDataType) => {
+        props.loginThunkCreator(formData.email, formData.password, formData.rememberMy);
     }
     return (
         <div>
@@ -16,20 +20,20 @@ const Login = () => {
 }
 
 type FormDataType = {
-    login: string
+    email: string
     password: string
     rememberMy: boolean
 }
 
-const maxLength10 = maxLengthCreator(10);
+const maxLength30 = maxLengthCreator(30);
 
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <div><Field type="text" placeholder={'Login'} name={'login'} component={Input}
-                        validate={[required, maxLength10]}/></div>
-            <div><Field type="text" placeholder={'Password'} name={'password'} component={Input}
-                        validate={[required, maxLength10]}/></div>
+            <div><Field type="text" placeholder={'Email'} name={'email'} component={Input}
+                        validate={[required, maxLength30]}/></div>
+            <div><Field type="password" placeholder={'Password'} name={'password'} component={Input}
+                        validate={[required, maxLength30]}/></div>
             <div><Field type="checkbox" name={'rememberMy'} component={'input'}/>remember me</div>
             <div>
                 <button>Login</button>
