@@ -2,15 +2,22 @@ import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {maxLengthCreator, required} from '../../utils/validators';
 import {Input} from '../common/FormControls/FormControls';
+import {Redirect} from 'react-router-dom';
 
 type LoginPropsType = {
     loginThunkCreator: (email: string, password: string, rememberMe: boolean) => void
+    isAuth: boolean
 }
 
 const Login = (props: LoginPropsType) => {
     const onSubmit = (formData: FormDataType) => {
         props.loginThunkCreator(formData.email, formData.password, formData.rememberMy);
     }
+
+    if (props.isAuth) {
+        return <Redirect to={'/profile'} />
+    }
+
     return (
         <div>
             <h1>Login</h1>
