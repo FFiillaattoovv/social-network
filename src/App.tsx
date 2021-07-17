@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar/Navbar';
-import {Route} from 'react-router-dom';
+import {Route, withRouter} from 'react-router-dom';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
@@ -12,6 +12,7 @@ import HeaderContainer from './components/Header/HeaderContainer';
 import LoginContainer from './components/Login/LoginContainer';
 import {connect} from 'react-redux';
 import {getAuthUserDataThunkCreator} from './redux/auth-reducer';
+import {compose} from 'redux';
 
 type MSTPType = {};
 
@@ -45,4 +46,7 @@ class App extends React.Component<PropsType> {
     }
 }
 
-export default connect(null, {getAuthUserDataThunkCreator})(App);
+export default compose<React.ComponentType>(
+    withRouter,
+    connect(null, {getAuthUserDataThunkCreator})
+)(App);
