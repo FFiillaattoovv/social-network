@@ -9,10 +9,23 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
-import Login from './components/Login/Login';
 import LoginContainer from './components/Login/LoginContainer';
+import {connect} from 'react-redux';
+import {getAuthUserDataThunkCreator} from './redux/auth-reducer';
 
-class App extends React.Component {
+type MSTPType = {};
+
+type MDTPType = {
+    getAuthUserDataThunkCreator: () => void
+}
+
+type PropsType = MSTPType & MDTPType;
+
+class App extends React.Component<PropsType> {
+    componentDidMount() {
+        this.props.getAuthUserDataThunkCreator();
+    }
+
     render() {
         return (
             <div className="app-wrapper">
@@ -32,4 +45,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default connect(null, {getAuthUserDataThunkCreator})(App);
