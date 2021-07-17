@@ -3,6 +3,7 @@ import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {maxLengthCreator, required} from '../../utils/validators';
 import {Input} from '../common/FormControls/FormControls';
 import {Redirect} from 'react-router-dom';
+import styles from '../common/FormControls/FormControls.module.css';
 
 type LoginPropsType = {
     loginThunkCreator: (email: string, password: string, rememberMe: boolean) => void
@@ -15,7 +16,7 @@ const Login = (props: LoginPropsType) => {
     }
 
     if (props.isAuth) {
-        return <Redirect to={'/profile'} />
+        return <Redirect to={'/profile'}/>
     }
 
     return (
@@ -42,6 +43,7 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
             <div><Field type="password" placeholder={'Password'} name={'password'} component={Input}
                         validate={[required, maxLength30]}/></div>
             <div><Field type="checkbox" name={'rememberMy'} component={'input'}/>remember me</div>
+            {props.error && <div className={styles.formSummaryError}>{props.error}</div>}
             <div>
                 <button>Login</button>
             </div>
