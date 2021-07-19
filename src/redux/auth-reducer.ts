@@ -1,4 +1,4 @@
-import {Dispatch, ActionCreator} from 'redux';
+import {ActionCreator, Dispatch} from 'redux';
 import {authAPI} from '../api/api';
 import {stopSubmit} from 'redux-form';
 
@@ -31,7 +31,7 @@ export const setAuthUserData = (id: number | null, email: string | null, login: 
 } as const)
 
 export const getAuthUserDataThunkCreator = () => (dispatch: Dispatch) => {
-    authAPI.getAuth().then(response => {
+    return authAPI.getAuth().then(response => {
         if (response.data.resultCode === 0) {
             let {id, email, login} = response.data.data;
             dispatch(setAuthUserData(id, email, login, true));

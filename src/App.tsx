@@ -11,23 +11,28 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginContainer from './components/Login/LoginContainer';
 import {connect} from 'react-redux';
-import {getAuthUserDataThunkCreator} from './redux/auth-reducer';
 import {compose} from 'redux';
+import {initializeApp} from './redux/app-reducer';
+import {AppStateType} from './redux/redux-store';
+import Preloader from './components/common/Preloader/Preloader';
 
 type MSTPType = {};
 
 type MDTPType = {
-    getAuthUserDataThunkCreator: () => void
+    initializeApp: () => void
 }
 
 type PropsType = MSTPType & MDTPType;
 
 class App extends React.Component<PropsType> {
     componentDidMount() {
-        this.props.getAuthUserDataThunkCreator();
+        this.props.initializeApp();
     }
 
     render() {
+        if (!this.props.initializeApp) {
+            return <Preloader/>;
+        }
         return (
             <div className="app-wrapper">
                 <HeaderContainer/>
@@ -46,7 +51,13 @@ class App extends React.Component<PropsType> {
     }
 }
 
+const mapStateToProps = (state: AppStateType) => {
+    return {
+        initialized: state.app.initialized
+    }
+};
+
 export default compose<React.ComponentType>(
     withRouter,
-    connect(null, {getAuthUserDataThunkCreator})
+    connect(mapStateToProps, {initializeApp})
 )(App);
