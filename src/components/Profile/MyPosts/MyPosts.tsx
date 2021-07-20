@@ -10,7 +10,7 @@ type PropsType = {
     addPost: (newPostBody: string) => void
 }
 
-const MyPosts = (props: PropsType) => {
+const MyPosts = React.memo((props: PropsType) => {
 
     let state = props.profilePage;
 
@@ -33,7 +33,7 @@ const MyPosts = (props: PropsType) => {
             {postsElements}
         </div>
     )
-};
+});
 
 type PostFormType = {
     newPostBody: string
