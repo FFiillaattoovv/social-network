@@ -59,6 +59,12 @@ const profileReducer = (state: InitialStateType = initialState, action: ProfileA
                 status: action.status
             }
         }
+        case 'DELETE-POST': {
+            return {
+                ...state,
+                posts: state.posts.filter(post => post.id !== action.id)
+            }
+        }
         default:
             return state;
     }
@@ -67,11 +73,13 @@ const profileReducer = (state: InitialStateType = initialState, action: ProfileA
 export type addPostActionType = ReturnType<typeof addPostActionCreator>
 export type setUserProfileActionType = ReturnType<typeof setUserProfileActionCreator>
 export type setUserStatusActionType = ReturnType<typeof setUserStatusActionCreator>
+export type deletePostActionType = ReturnType<typeof deletePostActionCreator>
 
 export type ProfileActionsType =
     addPostActionType
     | setUserProfileActionType
     | setUserStatusActionType
+    | deletePostActionType
 
 export const addPostActionCreator = (newPostBody: string) => ({type: 'ADD-POST', newPostBody: newPostBody} as const)
 
@@ -85,6 +93,11 @@ export const setUserProfileActionCreator = (profile: ProfileType | null) => ({
 export const setUserStatusActionCreator = (status: string) => ({
     type: 'SET-STATUS',
     status: status
+} as const)
+
+export const deletePostActionCreator = (id: number) => ({
+    type: 'DELETE-POST',
+    id: id
 } as const)
 
 export const getUserProfileThunkCreator = (userId: string) => (dispatch: Dispatch) => {
