@@ -10,8 +10,8 @@ type PropsType = {
     updateStatus: (status: string) => void
 }
 
-const ProfileInfo = (props: PropsType) => {
-    if (!props.profile) {
+const ProfileInfo = ({profile, status, updateStatus}: PropsType) => {
+    if (!profile) {
         return <Preloader/>
     }
     return (
@@ -19,8 +19,8 @@ const ProfileInfo = (props: PropsType) => {
             <div className={classes.content}>
                 <img src="https://cdn.pixabay.com/photo/2016/10/29/23/48/animals-1782013__340.png" alt=""/>
             </div>
-            <img src={props.profile.photos.large} alt="profile"/>
-            <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+            <img src={profile.photos.large} alt="profile"/>
+            <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
         </div>
     )
 }
