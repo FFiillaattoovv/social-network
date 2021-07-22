@@ -3,14 +3,14 @@ import styles from '../../Users/Users.module.css';
 
 type PropsType = {
     onPageChanged: (pageNumber: number) => void
-    totalUserCount: number
+    totalItemsCount: number
     pageSize: number
     currentPage: number
 }
 
 const Paginator = (props: PropsType) => {
 
-    let pagesCount = Math.ceil(props.totalUserCount / props.pageSize);
+    let pagesCount = Math.ceil(props.totalItemsCount / props.pageSize);
 
     let pages = []
 
@@ -28,28 +28,13 @@ const Paginator = (props: PropsType) => {
 
     let rightPortionPageNumber = portionNumber * portionSize;
 
-    let previousPageToggle = () => {
-        setPortionNumber((prevValue) => {
-            return prevValue - 1;
-        });
-    }
-
-    let nextPageToggle = () => {
-        setPortionNumber((prevValue) => {
-            return prevValue + 1;
-        });
-    }
-
     return (
         <div>
-            {portionNumber > 1 && <button onClick={previousPageToggle}>PREV</button>}
-            {pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber).map(e => {
-                return <span onClick={() => {
-                    props.onPageChanged(e)
-                }}
-                             className={`${props.currentPage === e && styles.selectedPage} ${styles.pageNumber}`}>{e}</span>
-            })}
-            {portionCount > portionNumber && <button onClick={nextPageToggle}>NEXT</button>}
+            {portionNumber > 1 && <button onClick={() => {setPortionNumber(portionNumber - 1)}}>PREV</button>}
+            {pages.filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
+                .map(e => {return <span onClick={() => {props.onPageChanged(e)}}
+                                        className={`${props.currentPage === e && styles.selectedPage} ${styles.pageNumber}`}>{e}</span>})}
+            {portionCount > portionNumber && <button onClick={() => {setPortionNumber(portionNumber + 1)}}>NEXT</button>}
         </div>
     )
 }

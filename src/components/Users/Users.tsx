@@ -40,7 +40,7 @@ const Users = ({
 
     return (
         <div>
-            <Paginator onPageChanged={onPageChanged} totalUserCount={totalUserCount}
+            <Paginator onPageChanged={onPageChanged} totalItemsCount={totalUserCount}
                        pageSize={pageSize} currentPage={currentPage}/>
             {
                 users.map(u => <User key={u.id} user={u} followThunkCreator={followThunkCreator}
