@@ -59,11 +59,13 @@ export type UsersPropsType = MapStatePropsType & MDTPType
 class UsersContainer extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-        this.props.getUsersThunkCreator( this.props.pageSize, this.props.currentPage);
+        const {getUsersThunkCreator, pageSize, currentPage} = this.props;
+        getUsersThunkCreator(pageSize, currentPage);
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.getUsersThunkCreator( this.props.pageSize, pageNumber);
+        const {getUsersThunkCreator, pageSize} = this.props;
+        getUsersThunkCreator(pageSize, pageNumber);
     }
 
     render() {
